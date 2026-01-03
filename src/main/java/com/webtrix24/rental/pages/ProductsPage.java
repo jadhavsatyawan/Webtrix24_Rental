@@ -49,6 +49,10 @@ public class ProductsPage extends BasePage
 	}
 	
 	//Locators
+	
+	
+	@FindBy (xpath = "//h2[contains(text(),'Create Product')]")
+	WebElement productFormTitle;
 //	
 @FindBy(xpath = "//input[@id='product_name']")
 	WebElement productName;
@@ -141,6 +145,16 @@ By dropdownOptions = By.xpath("//div[contains(@class,'cursor-pointer')]//*[norma
 	WebElement productSearchInput;   //div[@class='product-search__input-container css-19bb58m']
 	
 	//Action Methods
+	
+	
+	public boolean isCreateProductFormDisplayed() 
+	{
+        try {
+            return productFormTitle.isDisplayed();   //Access directly — PageFactory initialized it
+        } catch (Exception e) {
+            return false;
+        }
+	}
 	
 	
 	// Method: Click on Product Name field to open dropdown
@@ -410,11 +424,11 @@ By dropdownOptions = By.xpath("//div[contains(@class,'cursor-pointer')]//*[norma
  }
  
 
- public void selectModelName(String modelNm) throws InterruptedException {
+ public void selectModelName(String modelNm) throws InterruptedException {   
      dropdownUtil.selectFromSearchableDropdown(this.modelName, modelNm);//productTYpeInput
  }
  
- public void selectModelNum(String modelNum) throws InterruptedException {
+ public void selectModelNum(String modelNum) throws InterruptedException {    
      dropdownUtil.selectFromSearchableDropdown(this.modelNumber, modelNum);//productTYpeInput
  }
  

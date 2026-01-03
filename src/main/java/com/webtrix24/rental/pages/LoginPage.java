@@ -56,6 +56,11 @@ public class LoginPage extends BasePage
 	        username.sendKeys(um);
 	        Thread.sleep(1000);
 	    }
+	    
+	    public String getLoggedInUserName() {
+	        return username.getText().trim();
+	    }
+
 
 	    public void setPassword(String pass) throws InterruptedException 
 	    {
