@@ -2,24 +2,24 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-12-20T12:30:18 IST" name="Default suite" finished-at="2025-12-20T12:30:37 IST" duration-ms="18530">
+  <suite started-at="2026-01-01T15:12:54 IST" name="Default suite" finished-at="2026-01-01T15:13:20 IST" duration-ms="25407">
     <groups>
     </groups>
-    <test started-at="2025-12-20T12:30:18 IST" name="Default test" finished-at="2025-12-20T12:30:37 IST" duration-ms="18530">
-      <class name="com.webtrix24.rental.tests.customer.CustomerCreateFunctionalTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.webtrix24.rental.tests.customer.CustomerCreateFunctionalTest@7a8c8dcf]" started-at="2025-12-20T12:30:18 IST" name="setUp" finished-at="2025-12-20T12:30:22 IST" duration-ms="4144" status="PASS">
+    <test started-at="2026-01-01T15:12:54 IST" name="Default test" finished-at="2026-01-01T15:13:20 IST" duration-ms="25407">
+      <class name="com.webtrix24.rental.tests.customer.CustomerCreatePositiveTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.webtrix24.rental.tests.customer.CustomerCreatePositiveTest@7d20d0b]" started-at="2026-01-01T15:12:54 IST" name="setUp" finished-at="2026-01-01T15:13:00 IST" duration-ms="5224" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method is-config="true" signature="setUpCustomerCreate()[pri:0, instance:com.webtrix24.rental.tests.customer.CustomerCreateFunctionalTest@7a8c8dcf]" started-at="2025-12-20T12:30:22 IST" name="setUpCustomerCreate" finished-at="2025-12-20T12:30:33 IST" duration-ms="10198" status="PASS">
+        <test-method is-config="true" signature="setUpCustomerCreate()[pri:0, instance:com.webtrix24.rental.tests.customer.CustomerCreatePositiveTest@7d20d0b]" started-at="2026-01-01T15:13:00 IST" name="setUpCustomerCreate" finished-at="2026-01-01T15:13:09 IST" duration-ms="9769" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpCustomerCreate -->
-        <test-method signature="verifyValidCustomerNameInput()[pri:1, instance:com.webtrix24.rental.tests.customer.CustomerCreateFunctionalTest@7a8c8dcf]" started-at="2025-12-20T12:30:33 IST" name="verifyValidCustomerNameInput" description="Verify valid input in Customer Name field" finished-at="2025-12-20T12:30:37 IST" duration-ms="4086" status="PASS">
+        <test-method signature="verifyValidCustomerFormInput()[pri:1, instance:com.webtrix24.rental.tests.customer.CustomerCreatePositiveTest@7d20d0b]" started-at="2026-01-01T15:13:10 IST" name="verifyValidCustomerFormInput" description="Verify valid input fill in Customer Form field" finished-at="2026-01-01T15:13:20 IST" duration-ms="10326" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyValidCustomerNameInput -->
-      </class> <!-- com.webtrix24.rental.tests.customer.CustomerCreateFunctionalTest -->
+        </test-method> <!-- verifyValidCustomerFormInput -->
+      </class> <!-- com.webtrix24.rental.tests.customer.CustomerCreatePositiveTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

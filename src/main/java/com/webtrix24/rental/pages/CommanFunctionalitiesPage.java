@@ -22,7 +22,7 @@ public class CommanFunctionalitiesPage extends BasePage
 	 
 	 
 	 
-	 /************* Constructor ***************/
+	/************* Constructor ***************/
 
 	public CommanFunctionalitiesPage(WebDriver driver)
 	{
@@ -33,6 +33,7 @@ public class CommanFunctionalitiesPage extends BasePage
 	
 	
 	/*******************Locators*******************************/
+	
 	@FindBy(xpath = "//button[text()='Create']")
 	WebElement createBtn;
 	
@@ -77,20 +78,6 @@ public class CommanFunctionalitiesPage extends BasePage
 	
 	/***************************Action Methods***********************************/
 	
-	/*public void clickCreateButton()
-	{
-		//createBtn.click();
-		 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		    // Wait until previous toast (if any) is gone
-		    wait.until(ExpectedConditions.invisibilityOfElementLocated(
-		        By.xpath("//div[contains(@class,'toast') or contains(@class,'notification')]")
-		    ));
-
-		    WebElement createButton = driver.findElement(By.xpath("//button[contains(.,'Create') or contains(.,'+ Create')]"));
-		    wait.until(ExpectedConditions.elementToBeClickable(createButton));
-		    createButton.click();
-	} */
-	
 	public void clickCreateButton() 
 	{
 	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -111,9 +98,12 @@ public class CommanFunctionalitiesPage extends BasePage
 	    ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, -100);");
 
 	    // Try normal click
-	    try {
+	    try 
+	    {
 	        createButton.click();
-	    } catch (org.openqa.selenium.ElementClickInterceptedException e) {
+	    } 
+	    catch (org.openqa.selenium.ElementClickInterceptedException e) 
+	    {
 	        System.out.println("⚠️ Normal click intercepted, performing JS click instead.");
 	        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", createButton);
 	    }
@@ -131,6 +121,12 @@ public class CommanFunctionalitiesPage extends BasePage
         saveBtn.click();
         return toastUtil.captureToastMessage(); // ✅ Use reusable util here
     }
+    
+    public String clickSaveNewAndGetToast() 
+    {
+        saveNewBtn.click();
+        return toastUtil.captureToastMessage(); // ✅ Use reusable util here
+    }
 	public void formCancalButton() 
 	{
 		formCancalIcon.click();
@@ -140,6 +136,18 @@ public class CommanFunctionalitiesPage extends BasePage
 	public void clickrefreshDropdown() 
 	{
 		refreshDropdownList.click();
+		
+	}
+	
+	public void clickExportPDF() 
+	{
+		exportPDF.click();
+		
+	}
+	
+	public void clickExportExcel() 
+	{
+		exportExcel.click();
 		
 	}
 

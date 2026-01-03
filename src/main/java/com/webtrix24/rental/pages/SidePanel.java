@@ -31,7 +31,7 @@ public class SidePanel extends BasePage
 	@FindBy(xpath = "//a[@href='/customer']")  //li[@id='customer']
 	WebElement customerModule;
 	
-	@FindBy(xpath = "//button//span[text()='Products']")//a[@href='#rental_product1
+	@FindBy(xpath = "//a[@href='/products']")//a[@href='#rental_product1
 	WebElement rentalProduct;
 	
 	@FindBy(xpath = "//button//span[text()='Deliveries']")  //a[@href='#deliveries']
@@ -92,6 +92,8 @@ public class SidePanel extends BasePage
 	
 	public void clickProducts()
 	{
+		 wait.until(ExpectedConditions.visibilityOf(rentalProduct));
+		 wait.until(ExpectedConditions.elementToBeClickable(rentalProduct));
 		rentalProduct.click();
 		
 	}
