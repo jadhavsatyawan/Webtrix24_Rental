@@ -10,7 +10,7 @@ import com.webtrix24.rental.pages.UserProfile;
 import com.webtrix24.rental.pages.UserSettings;
 import com.webtrix24.rental.utils.ConfigReader;
 
-public class UserProfilePositiveTest extends BaseClass {
+public class UserProfileNegativeTest extends BaseClass {
 
 	LoginPage loginPage;
 	Header header;
@@ -35,11 +35,11 @@ public class UserProfilePositiveTest extends BaseClass {
 		userSettings.setMobileCountryCode("+91");
 		userSettings.setMobileNumber("9865624170");
 		userSettings.setWhatsAppCountryCode("+91");
-		userSettings.setWhatsAppNumber("9865624170");
+		userSettings.setWhatsAppNumber("986562417");
 		userSettings.setTimezone();
 		userSettings.setLocation("Pune");
 		userSettings.saveChanges();
-		userSettings.changePassword("Sanket@123!", "Sanket@123!", "Sanket@123!");
+		userSettings.changePassword("Sanket@123", "Sanket@123", "Sanket@123!");
 		userSettings.clickUpdatePassword();
 		Thread.sleep(6000);
 		userSettings.clickLogoutFromAllDevices();
