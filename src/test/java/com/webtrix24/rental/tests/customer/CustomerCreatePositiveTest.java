@@ -83,7 +83,7 @@ public class CustomerCreatePositiveTest extends BaseClass
     }
     
    // @Test(priority = 2, description = "Verify Assignee field is auto-filled with logged-in user in Create Customer form")
-    public void verifyAssigneeAutoFilledWithLoggedInUser() throws InterruptedException
+    public void verifyAssigneeAutoFilledWithLoggedInUser() throws Exception
     {
     	    // Step 1: Get logged-in user name from header/profile
     	    hr.clickProfileDropdwon();
