@@ -6,7 +6,7 @@
       <class name="com.webtrix24.rental.tests.customer.CustomerCreatePositiveTest">
         <methods>
           <include name="setUp"/>
-          <include name="verifyValidCustomerFormInput"/>
+          <include name="verifyLeadSourceDropdownSelectionAndPersistence"/>
           <include name="setUpCustomerCreate"/>
         </methods>
       </class> <!-- com.webtrix24.rental.tests.customer.CustomerCreatePositiveTest -->

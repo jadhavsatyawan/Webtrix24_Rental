@@ -3,16 +3,19 @@
 <suite name="Suite">
 <listeners>
    <!-- <listener class-name="utilities.MyListener"></listener> -->
-      <listener class-name="utilities.ExtentReportManager"></listener>
+     <!--  <listener class-name="utilities.ExtentReportManager"></listener>-->
+          <listener class-name="com.webtrix24.rental.utils.ExtentReportManager1"/>
+      
    
 </listeners>
+
 
   <parameter name="os" value="Windows 10"/>
   <parameter name="browser" value="Chrome 120"/>
 
   <test thread-count="5" name="Test">
     <classes>
-      <class name="com.rental.tests.customer.CustomerCreateFunctionalTest"/>
+      <class name="com.webtrix24.rental.tests.customer.CustomerCreateNegativeExtentTest"/>
       <!--  <class name="com.rental.tests.Products.ProductCreatePositiveTest"/>-->
     </classes>
   </test> <!-- Test -->
