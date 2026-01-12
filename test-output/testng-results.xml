@@ -2,24 +2,24 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-01-05T16:30:09 IST" name="Default suite" finished-at="2026-01-05T16:30:37 IST" duration-ms="28134">
+  <suite started-at="2026-01-05T18:40:00 IST" name="Default suite" finished-at="2026-01-05T18:40:20 IST" duration-ms="19442">
     <groups>
     </groups>
-    <test started-at="2026-01-05T16:30:09 IST" name="Default test" finished-at="2026-01-05T16:30:37 IST" duration-ms="28134">
-      <class name="com.webtrix24.rental.tests.userprofile.UserProfilePositiveTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.webtrix24.rental.tests.userprofile.UserProfilePositiveTest@13b6aecc]" started-at="2026-01-05T16:30:09 IST" name="setUp" finished-at="2026-01-05T16:30:13 IST" duration-ms="3525" status="PASS">
+    <test started-at="2026-01-05T18:40:00 IST" name="Default test" finished-at="2026-01-05T18:40:20 IST" duration-ms="19442">
+      <class name="com.webtrix24.rental.tests.dashboard.DashboardPositiveTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.webtrix24.rental.tests.dashboard.DashboardPositiveTest@13b6aecc]" started-at="2026-01-05T18:40:00 IST" name="setUp" finished-at="2026-01-05T18:40:03 IST" duration-ms="3174" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method is-config="true" signature="setUpForProfileUpdate()[pri:0, instance:com.webtrix24.rental.tests.userprofile.UserProfilePositiveTest@13b6aecc]" started-at="2026-01-05T16:30:13 IST" name="setUpForProfileUpdate" finished-at="2026-01-05T16:30:20 IST" duration-ms="7295" status="PASS">
+        <test-method is-config="true" signature="setUpForDashboard()[pri:0, instance:com.webtrix24.rental.tests.dashboard.DashboardPositiveTest@13b6aecc]" started-at="2026-01-05T18:40:03 IST" name="setUpForDashboard" finished-at="2026-01-05T18:40:11 IST" duration-ms="7446" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setUpForProfileUpdate -->
-        <test-method signature="updateProfilePage()[pri:0, instance:com.webtrix24.rental.tests.userprofile.UserProfilePositiveTest@13b6aecc]" started-at="2026-01-05T16:30:20 IST" name="updateProfilePage" finished-at="2026-01-05T16:30:37 IST" duration-ms="17266" status="PASS">
+        </test-method> <!-- setUpForDashboard -->
+        <test-method signature="checkDashboard()[pri:0, instance:com.webtrix24.rental.tests.dashboard.DashboardPositiveTest@13b6aecc]" started-at="2026-01-05T18:40:11 IST" name="checkDashboard" finished-at="2026-01-05T18:40:20 IST" duration-ms="8755" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- updateProfilePage -->
-      </class> <!-- com.webtrix24.rental.tests.userprofile.UserProfilePositiveTest -->
+        </test-method> <!-- checkDashboard -->
+      </class> <!-- com.webtrix24.rental.tests.dashboard.DashboardPositiveTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
