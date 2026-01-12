@@ -2,75 +2,24 @@
 <testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-01-08T18:50:39 IST" name="Default suite" finished-at="2026-01-08T18:52:30 IST" duration-ms="111642">
+  <suite started-at="2026-01-05T18:40:00 IST" name="Default suite" finished-at="2026-01-05T18:40:20 IST" duration-ms="19442">
     <groups>
     </groups>
-    <test started-at="2026-01-08T18:50:39 IST" name="Default test" finished-at="2026-01-08T18:52:30 IST" duration-ms="111642">
-      <class name="com.webtrix24.rental.tests.customer.CustomerCreatePositiveTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.webtrix24.rental.tests.customer.CustomerCreatePositiveTest@293a5bf6]" started-at="2026-01-08T18:50:39 IST" name="setUp" finished-at="2026-01-08T18:50:55 IST" duration-ms="15920" status="PASS">
+    <test started-at="2026-01-05T18:40:00 IST" name="Default test" finished-at="2026-01-05T18:40:20 IST" duration-ms="19442">
+      <class name="com.webtrix24.rental.tests.dashboard.DashboardPositiveTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.webtrix24.rental.tests.dashboard.DashboardPositiveTest@13b6aecc]" started-at="2026-01-05T18:40:00 IST" name="setUp" finished-at="2026-01-05T18:40:03 IST" duration-ms="3174" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method is-config="true" signature="setUpCustomerCreate()[pri:0, instance:com.webtrix24.rental.tests.customer.CustomerCreatePositiveTest@293a5bf6]" started-at="2026-01-08T18:50:55 IST" name="setUpCustomerCreate" finished-at="2026-01-08T18:51:27 IST" duration-ms="31743" status="PASS">
+        <test-method is-config="true" signature="setUpForDashboard()[pri:0, instance:com.webtrix24.rental.tests.dashboard.DashboardPositiveTest@13b6aecc]" started-at="2026-01-05T18:40:03 IST" name="setUpForDashboard" finished-at="2026-01-05T18:40:11 IST" duration-ms="7446" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setUpCustomerCreate -->
-        <test-method signature="verifyLeadSourceDropdownSelectionAndPersistence()[pri:11, instance:com.webtrix24.rental.tests.customer.CustomerCreatePositiveTest@293a5bf6]" started-at="2026-01-08T18:51:27 IST" name="verifyLeadSourceDropdownSelectionAndPersistence" description="Verify Lead Source dropdown value is selectable, saved and retained after reopening" finished-at="2026-01-08T18:52:30 IST" duration-ms="63874" status="FAIL">
-          <exception class="org.openqa.selenium.TimeoutException">
-            <message>
-              <![CDATA[Expected condition failed: waiting for element to be clickable: By.xpath: //div[normalize-space()='va@test.com']/ancestor::div[contains(@class,'border-b')]//button[@title='Customer Edit'] (tried for 10 second(s) with 500 milliseconds interval)
-Build info: version: '4.17.0', revision: 'e52b1be057*'
-System info: os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '14.1.1', java.version: '17'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 143.0.7499.170, chrome: {chromedriverVersion: 143.0.7499.192 (be2c1f4fd45..., userDataDir: /var/folders/2w/qcmlvkks7l5...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56223}, goog:processID: 5591, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: mac, proxy: Proxy(), se:cdp: ws://localhost:56223/devtoo..., se:cdpVersion: 143.0.7499.170, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 94b16f1816bd40ac5bc486eb594b1a9b]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: By.xpath: //div[normalize-space()='va@test.com']/ancestor::div[contains(@class,'border-b')]//button[@title='Customer Edit'] (tried for 10 second(s) with 500 milliseconds interval)
-Build info: version: '4.17.0', revision: 'e52b1be057*'
-System info: os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '14.1.1', java.version: '17'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 143.0.7499.170, chrome: {chromedriverVersion: 143.0.7499.192 (be2c1f4fd45..., userDataDir: /var/folders/2w/qcmlvkks7l5...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56223}, goog:processID: 5591, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: mac, proxy: Proxy(), se:cdp: ws://localhost:56223/devtoo..., se:cdpVersion: 143.0.7499.170, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 94b16f1816bd40ac5bc486eb594b1a9b
-at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-at com.webtrix24.rental.pages.CustomerListPage.clickEditByCustomerEmail(CustomerListPage.java:64)
-at com.webtrix24.rental.tests.customer.CustomerCreatePositiveTest.verifyLeadSourceDropdownSelectionAndPersistence(CustomerCreatePositiveTest.java:391)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-at org.testng.TestRunner.privateRun(TestRunner.java:741)
-at org.testng.TestRunner.run(TestRunner.java:616)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.TimeoutException -->
+        </test-method> <!-- setUpForDashboard -->
+        <test-method signature="checkDashboard()[pri:0, instance:com.webtrix24.rental.tests.dashboard.DashboardPositiveTest@13b6aecc]" started-at="2026-01-05T18:40:11 IST" name="checkDashboard" finished-at="2026-01-05T18:40:20 IST" duration-ms="8755" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyLeadSourceDropdownSelectionAndPersistence -->
-      </class> <!-- com.webtrix24.rental.tests.customer.CustomerCreatePositiveTest -->
+        </test-method> <!-- checkDashboard -->
+      </class> <!-- com.webtrix24.rental.tests.dashboard.DashboardPositiveTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

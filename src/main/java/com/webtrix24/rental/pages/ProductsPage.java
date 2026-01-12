@@ -338,49 +338,49 @@ public class ProductsPage extends BasePage {
 	// By productNameInput = By.xpath("//input[@id='product_name']");
 
 	public void selectProduct(String productName) throws InterruptedException {
-		dropdownUtil.selectFromSearchableDropdown(this.productName, productName);// productNameInput
+		dropdownUtil.selectFromSearchableDropdown(this.productName, productName + Keys.ENTER);// productNameInput
 	}
 
 	// By productTYpeInput = By.xpath("//input[@id='product_type']");
 
 	public void selectProductType(String productType) throws InterruptedException {
-		dropdownUtil.selectFromSearchableDropdown(this.productType, productType);// productTYpeInput
+		dropdownUtil.selectFromSearchableDropdown(this.productType, productType + Keys.ENTER);// productTYpeInput
 	}
 
 	public void selectProductUnit(String productUnit) throws InterruptedException {
-		dropdownUtil.selectFromSearchableDropdown(this.unit, productUnit);// productTYpeInput
+		dropdownUtil.selectFromSearchableDropdown(this.unit, productUnit + Keys.ENTER);// productTYpeInput
 	}
 
 	public void selectModelName(String modelNm) throws InterruptedException {
-		dropdownUtil.selectFromSearchableDropdown(this.modelName, modelNm);// productTYpeInput
+		dropdownUtil.selectFromSearchableDropdown(this.modelName, modelNm + Keys.ENTER);// productTYpeInput
 	}
 
 	public void selectModelNum(String modelNum) throws InterruptedException {
-		dropdownUtil.selectFromSearchableDropdown(this.modelNumber, modelNum);// productTYpeInput
+		dropdownUtil.selectFromSearchableDropdown(this.modelNumber, modelNum + Keys.ENTER);// productTYpeInput
 	}
 
 	public void selectGeneration(String generation) throws InterruptedException {
-		dropdownUtil.selectFromSearchableDropdown(this.generation, generation);// productTYpeInput
+		dropdownUtil.selectFromSearchableDropdown(this.generation, generation + Keys.ENTER);// productTYpeInput
 	}
 
 	public void selectHDDCapacity(String hddCapacity) throws InterruptedException {
-		dropdownUtil.selectFromSearchableDropdown(this.hddCapacity, hddCapacity);// productTYpeInput
+		dropdownUtil.selectFromSearchableDropdown(this.hddCapacity, hddCapacity + Keys.ENTER);// productTYpeInput
 	}
 
 	public void selectMemory(String memory) throws InterruptedException {
-		dropdownUtil.selectFromSearchableDropdown(this.memory, memory);// productTYpeInput
+		dropdownUtil.selectFromSearchableDropdown(this.memory, memory + Keys.ENTER);// productTYpeInput
 	}
 
 	public void selectOperatingSystem(String op) throws InterruptedException {
-		dropdownUtil.selectFromSearchableDropdown(this.operatingSystem, op);// productTYpeInput
+		dropdownUtil.selectFromSearchableDropdown(this.operatingSystem, op + Keys.ENTER);// productTYpeInput
 	}
 
 	public void selectScreenSize(String screen) throws InterruptedException {
-		dropdownUtil.selectFromSearchableDropdown(this.screensize, screen);// productTYpeInput
+		dropdownUtil.selectFromSearchableDropdown(this.screensize, screen + Keys.ENTER);// productTYpeInput
 	}
 
 	public void selectProcessor(String processor) throws InterruptedException {
-		dropdownUtil.selectFromSearchableDropdown(this.processor, processor);// productTYpeInput
+		dropdownUtil.selectFromSearchableDropdown(this.processor, processor + Keys.ENTER);// productTYpeInput
 	}
 
 	// Action Method
