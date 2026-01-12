@@ -1,23 +1,29 @@
 package com.webtrix24.rental.tests.customer;
 
-
-
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.webtrix24.rental.core.BaseClass;
 import com.webtrix24.rental.pages.CommanFunctionalitiesPage;
+import com.webtrix24.rental.pages.CustomerListPage;
 import com.webtrix24.rental.pages.CustomersPage;
 import com.webtrix24.rental.pages.Header;
 import com.webtrix24.rental.pages.LoginPage;
 import com.webtrix24.rental.pages.SidePanel;
 import com.webtrix24.rental.utils.ConfigReader;
 
+//@Listeners(utilities.MyListener.class)
+public class CustomerCreatePositiveTest extends BaseClass {
+	LoginPage loginPage;
+	SidePanel sidePanel;
+	Header hr;
+	CommanFunctionalitiesPage cmf;
+	CustomersPage customersPage; // class-level variable
 
+	// Login & basic navigation – ONLY ONCE
+	@BeforeClass
+	public void setUpCustomerCreate() throws InterruptedException {
 
 //@Listeners(utilities.MyListener.class)
 public class CustomerCreatePositiveTest extends BaseClass
