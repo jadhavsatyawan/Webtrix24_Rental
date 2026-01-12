@@ -35,11 +35,13 @@ public class Header extends BasePage
 	WebElement DpopupUserName;
 
 	
-	/***************************Actions methods************************************************/
+	/***************************Actions methods
+	 * @throws Exception ************************************************/
 
-	public void clickProfileDropdwon()
+	public void clickProfileDropdwon() throws Exception
 	{
 		dropdwon.click();
+		Thread.sleep(2000);
 	}
 	
 	public String getLoggedInUserNameFromPopup() 
