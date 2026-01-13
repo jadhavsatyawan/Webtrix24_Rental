@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.webtrix24.rental.tests.dashboard.DashboardPositiveTest">
+      <class name="com.webtrix24.rental.tests.userprofile.UserProfilePositiveTest">
         <methods>
           <include name="setUp"/>
-          <include name="checkDashboard"/>
-          <include name="setUpForDashboard"/>
+          <include name="setUpForProfileUpdate"/>
+          <include name="updateProfilePage"/>
         </methods>
-      </class> <!-- com.webtrix24.rental.tests.dashboard.DashboardPositiveTest -->
+      </class> <!-- com.webtrix24.rental.tests.userprofile.UserProfilePositiveTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
