@@ -103,7 +103,7 @@
                     <div class="method-list-content failed suite-Default_suite">
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="com.webtrix24.rental.tests.userprofile.UserProfilePositiveTest" class="method navigator-link" hash-for-method="updateProfilePage">updateProfilePage</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="com.webtrix24.rental.tests.customer.CustomerCreatePositiveTest" class="method navigator-link" hash-for-method="verifyValidCustomerForm">verifyValidCustomerForm</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Default_suite -->
@@ -121,31 +121,25 @@
           <div class="suite-Default_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">com.webtrix24.rental.tests.userprofile.UserProfilePositiveTest</span>
+              <span class="class-name">com.webtrix24.rental.tests.customer.CustomerCreatePositiveTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="updateProfilePage">
-                  </a> <!-- updateProfilePage -->
-                  <span class="method-name">updateProfilePage</span>
-                  <div class="stack-trace">org.openqa.selenium.remote.UnreachableBrowserException: Error communicating with the remote browser. It may have died.
+                  <a name="verifyValidCustomerForm">
+                  </a> <!-- verifyValidCustomerForm -->
+                  <span class="method-name">verifyValidCustomerForm</span>
+                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: By.xpath: //div[@role=&apos;option&apos;]//span[contains(normalize-space(),&apos;FB&apos;)] (tried for 10 second(s) with 500 milliseconds interval)
 Build info: version: &apos;4.17.0&apos;, revision: &apos;e52b1be057*&apos;
 System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;14.1.1&apos;, java.version: &apos;17&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [9679178ffe49d00077067fd179ec8052, findElement [using, value]]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 143.0.7499.193, chrome: {chromedriverVersion: 143.0.7499.192 (be2c1f4fd45..., userDataDir: /var/folders/2w/qcmlvkks7l5...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:53010}, goog:processID: 6467, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: mac, proxy: Proxy(), se:cdp: ws://localhost:53010/devtoo..., se:cdpVersion: 143.0.7499.193, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 9679178ffe49d00077067fd179ec8052
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:546)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:356)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:350)
-	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:68)
-	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
-	at jdk.proxy2/jdk.proxy2.$Proxy11.sendKeys(Unknown Source)
-	at com.webtrix24.rental.pages.UserSettings.setMobileNumber(UserSettings.java:113)
-	at com.webtrix24.rental.tests.userprofile.UserProfilePositiveTest.updateProfilePage(UserProfilePositiveTest.java:36)
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 143.0.7499.193, chrome: {chromedriverVersion: 143.0.7499.192 (be2c1f4fd45..., userDataDir: /var/folders/2w/qcmlvkks7l5...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:50133}, goog:processID: 3550, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: mac, proxy: Proxy(), se:cdp: ws://localhost:50133/devtoo..., se:cdpVersion: 143.0.7499.193, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 640fdd170bb1a9683cfa12f297020278
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
+	at com.webtrix24.rental.pages.CustomersPage.selectDropdownOption(CustomersPage.java:175)
+	at com.webtrix24.rental.pages.CustomersPage.fillCustomerForm(CustomersPage.java:350)
+	at com.webtrix24.rental.tests.customer.CustomerCreatePositiveTest.verifyValidCustomerForm(CustomerCreatePositiveTest.java:413)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -174,44 +168,10 @@ Session ID: 9679178ffe49d00077067fd179ec8052
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-Caused by: java.io.UncheckedIOException: java.io.IOException: HTTP/1.1 header parser received no bytes
-	at org.openqa.selenium.remote.http.jdk.JdkHttpClient.execute0(JdkHttpClient.java:442)
-	at org.openqa.selenium.remote.http.AddSeleniumUserAgent.lambda$apply$0(AddSeleniumUserAgent.java:42)
-	at org.openqa.selenium.remote.http.Filter.lambda$andFinally$1(Filter.java:55)
-	at org.openqa.selenium.remote.http.jdk.JdkHttpClient.execute(JdkHttpClient.java:358)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:187)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:519)
-	... 37 more
-Caused by: java.io.IOException: HTTP/1.1 header parser received no bytes
-	at java.net.http/jdk.internal.net.http.common.Utils.wrapWithExtraDetail(Utils.java:348)
-	at java.net.http/jdk.internal.net.http.Http1Response$HeadersReader.onReadError(Http1Response.java:675)
-	at java.net.http/jdk.internal.net.http.Http1AsyncReceiver.checkForErrors(Http1AsyncReceiver.java:302)
-	at java.net.http/jdk.internal.net.http.Http1AsyncReceiver.flush(Http1AsyncReceiver.java:268)
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler$LockingRestartableTask.run(SequentialScheduler.java:205)
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler$CompleteRestartableTask.run(SequentialScheduler.java:149)
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler$SchedulableTask.run(SequentialScheduler.java:230)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-	at java.base/java.lang.Thread.run(Thread.java:833)
-Caused by: java.io.EOFException: EOF reached while reading
-	at java.net.http/jdk.internal.net.http.Http1AsyncReceiver$Http1TubeSubscriber.onComplete(Http1AsyncReceiver.java:596)
-	at java.net.http/jdk.internal.net.http.SocketTube$InternalReadPublisher$ReadSubscription.signalCompletion(SocketTube.java:640)
-	at java.net.http/jdk.internal.net.http.SocketTube$InternalReadPublisher$InternalReadSubscription.read(SocketTube.java:845)
-	at java.net.http/jdk.internal.net.http.SocketTube$SocketFlowTask.run(SocketTube.java:181)
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler$SchedulableTask.run(SequentialScheduler.java:230)
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler.runOrSchedule(SequentialScheduler.java:303)
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler.runOrSchedule(SequentialScheduler.java:256)
-	at java.net.http/jdk.internal.net.http.SocketTube$InternalReadPublisher$InternalReadSubscription.signalReadable(SocketTube.java:774)
-	at java.net.http/jdk.internal.net.http.SocketTube$InternalReadPublisher$ReadEvent.signalEvent(SocketTube.java:957)
-	at java.net.http/jdk.internal.net.http.SocketTube$SocketFlowEvent.handle(SocketTube.java:253)
-	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.handleEvent(HttpClientImpl.java:979)
-	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.lambda$run$3(HttpClientImpl.java:934)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.run(HttpClientImpl.java:934)
 
 </div> <!-- stack-trace -->
+                  <em>
+(Verify customer can be created with all valid inputs in Customer form)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -219,7 +179,7 @@ Caused by: java.io.EOFException: EOF reached while reading
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">/private/var/folders/2w/qcmlvkks7l583g5j6rhvk02c0000gp/T/testng-eclipse--1038531349/testng-customsuite.xml</span>
+            <span class="header-content">/private/var/folders/2w/qcmlvkks7l583g5j6rhvk02c0000gp/T/testng-eclipse-843839058/testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -228,7 +188,7 @@ Caused by: java.io.EOFException: EOF reached while reading
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;com.webtrix24.rental.tests.userprofile.UserProfilePositiveTest&quot;/&gt;
+      &lt;class name=&quot;com.webtrix24.rental.tests.customer.CustomerCreatePositiveTest&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -270,14 +230,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'updateProfilePage')
-data.setCell(0, 2, 'com.webtrix24.rental.tests.userprofile.UserProfilePositiveTest')
-data.setCell(0, 3, 31884);
+data.setCell(0, 1, 'verifyValidCustomerForm')
+data.setCell(0, 2, 'com.webtrix24.rental.tests.customer.CustomerCreatePositiveTest')
+data.setCell(0, 3, 28959);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 31 seconds</span>
+              <span class="suite-total-time">Total running time: 28 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -292,9 +252,52 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">0 ignored methods</span>
+            <span class="header-content">19 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.webtrix24.rental.tests.customer.CustomerCreatePositiveTest</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">verifyCustomerWithZipcode</span>
+                <br/>
+                <span class="ignored-method-name">verifySaveAndNewClearsFormExceptAssignee</span>
+                <br/>
+                <span class="ignored-method-name">createCustomerValidGstState</span>
+                <br/>
+                <span class="ignored-method-name">verifyAssigneeAutoFilledWithLoggedInUser</span>
+                <br/>
+                <span class="ignored-method-name">createEMailCustomer</span>
+                <br/>
+                <span class="ignored-method-name">verifyCustomerWithWebsite</span>
+                <br/>
+                <span class="ignored-method-name">verifyCustomerAndBillingNameSame_AfterSave</span>
+                <br/>
+                <span class="ignored-method-name">shouldCreateCustomerWithOnlySelectingSource</span>
+                <br/>
+                <span class="ignored-method-name">shouldCreateCustomerWithOnlyCustomerName</span>
+                <br/>
+                <span class="ignored-method-name">verifyCustomerAndBillingNameDifferent_AfterSave</span>
+                <br/>
+                <span class="ignored-method-name">createMobileCustomer</span>
+                <br/>
+                <span class="ignored-method-name">createPanCustomer</span>
+                <br/>
+                <span class="ignored-method-name">verifyValidCustomerFormInput</span>
+                <br/>
+                <span class="ignored-method-name">createGstCustomer</span>
+                <br/>
+                <span class="ignored-method-name">verifyCustomerWithBillingAddress</span>
+                <br/>
+                <span class="ignored-method-name">createCustomerMobileNumberWhatsaaNumberSame</span>
+                <br/>
+                <span class="ignored-method-name">verifyPanNumberAutoConvertedToUppercase</span>
+                <br/>
+                <span class="ignored-method-name">createCustomerMobileNumberWhatsaaNumberDifferent</span>
+                <br/>
+                <span class="ignored-method-name">createAadharCustomer</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
         <div panel-name="chronological-Default_suite" class="panel">
@@ -303,20 +306,24 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">com.webtrix24.rental.tests.userprofile.UserProfilePositiveTest</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">com.webtrix24.rental.tests.customer.CustomerCreatePositiveTest</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
                 <span class="method-name">setUp</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-class before -->
               <div class="configuration-class before">
-                <span class="method-name">setUpForProfileUpdate</span>
-                <span class="method-start">16823 ms</span>
+                <span class="method-name">setUpCustomerCreate</span>
+                <span class="method-start">18230 ms</span>
               </div> <!-- configuration-class before -->
+              <div class="configuration-method before">
+                <span class="method-name">openCreateCustomerForm(public void com.webtrix24.rental.tests.customer.CustomerCreatePositiveTest.verifyValidCustomerForm()...)</span>
+                <span class="method-start">50222 ms</span>
+              </div> <!-- configuration-method before -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">updateProfilePage</span>
-                <span class="method-start">38617 ms</span>
+                <span class="method-name">verifyValidCustomerForm</span>
+                <span class="method-start">78059 ms</span>
               </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

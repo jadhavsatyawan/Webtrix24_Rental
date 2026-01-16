@@ -23,7 +23,6 @@ public class ProductsPage extends BasePage {
 	SearchandselectproductDropdownUtility searselectProduct;
 	DropdownUtil dropdownUtil;
 	CommanFunctionalitiesPage cmf;
-	RandomGenerationUtils randomGenerationUtils;
 
 	// CalendarUtil calendarUtil;
 	// Constructor
@@ -35,7 +34,6 @@ public class ProductsPage extends BasePage {
 
 		dropdownUtil = new DropdownUtil(driver);
 		cmf = new CommanFunctionalitiesPage(driver);
-		randomGenerationUtils = new RandomGenerationUtils(driver);
 
 		// calendarUtil = new CalendarUtil(driver);
 
@@ -393,7 +391,7 @@ public class ProductsPage extends BasePage {
 
 	public void setProductSerialNumber(String baseSerial) {
 		// Generate unique serial number (base + random)
-		String uniqueSerial = randomGenerationUtils.generateUniqueSerial(baseSerial, 5);
+		String uniqueSerial = RandomGenerationUtils.generateUniqueSerial(baseSerial, 5);
 		productSerialNumber.clear();
 		productSerialNumber.sendKeys(uniqueSerial);
 		System.out.println("Generated Product Serial Number: " + uniqueSerial);

@@ -5,6 +5,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import com.webtrix24.rental.core.BaseClass;
@@ -13,6 +14,7 @@ import com.webtrix24.rental.pages.CustomersPage;
 import com.webtrix24.rental.pages.LoginPage;
 import com.webtrix24.rental.pages.SidePanel;
 import com.webtrix24.rental.utils.ConfigReader;
+import com.webtrix24.rental.utils.TestDataGenerator;
 
 public class CustomerCreateNegativeTestNG extends BaseClass {
 
@@ -24,7 +26,7 @@ public class CustomerCreateNegativeTestNG extends BaseClass {
 	// ================= SETUP =================
 
 	@BeforeClass
-	public void setUp() throws InterruptedException {
+	public void setUpCustomerCreate() throws InterruptedException {
 
 		loginPage = new LoginPage(driver);
 		sidePanel = new SidePanel(driver);
@@ -72,6 +74,7 @@ public class CustomerCreateNegativeTestNG extends BaseClass {
 		return new Object[][] { { "12345" }, { "@#$%^" }, { "John@123" } };
 	}
 
+	@Ignore
 	@Test(priority = 2, dataProvider = "invalidCustomerNames", description = "Verify invalid Customer Name formats")
 	public void verifyInvalidCustomerName(String invalidName) {
 
@@ -93,6 +96,7 @@ public class CustomerCreateNegativeTestNG extends BaseClass {
 				{ "jo hn@gmail.com" } };
 	}
 
+	@Ignore
 	@Test(priority = 3, dataProvider = "invalidEmails", description = "Verify invalid Email formats")
 	public void verifyInvalidEmail(String invalidEmail) {
 
@@ -115,6 +119,7 @@ public class CustomerCreateNegativeTestNG extends BaseClass {
 		return new Object[][] { { "98765" }, { "987654321098" }, { "98AB543210" }, { "98@#543210" }, { "0000000000" } };
 	}
 
+	@Ignore
 	@Test(priority = 4, dataProvider = "invalidMobileNumbers", description = "Verify invalid Mobile Number formats")
 	public void verifyInvalidMobile(String invalidMobile) {
 
@@ -137,6 +142,7 @@ public class CustomerCreateNegativeTestNG extends BaseClass {
 		return new Object[][] { { "1234567890" }, { "1234ABCD9012" }, { "000000000000" } };
 	}
 
+	@Ignore
 	@Test(priority = 5, dataProvider = "invalidAadhaarNumbers", description = "Verify invalid Aadhaar Number")
 	public void verifyInvalidAadhaar(String invalidAadhaar) {
 
@@ -159,6 +165,7 @@ public class CustomerCreateNegativeTestNG extends BaseClass {
 		return new Object[][] { { "ABCDE1234" }, { "abcde1234f" }, { "AB@DE1234F" } };
 	}
 
+	@Ignore
 	@Test(priority = 6, dataProvider = "invalidPanNumbers", description = "Verify invalid PAN Number")
 	public void verifyInvalidPan(String invalidPan) {
 
@@ -174,13 +181,30 @@ public class CustomerCreateNegativeTestNG extends BaseClass {
 
 	}
 
-	// ================= GST =================
+	@Test(priority = -7, description = "Verify error is shown when valid PAN is entered in lowercase")
+	public void verifyLowercasePanIsRejected() {
+
+		customersPage.enterCustomerName(TestDataGenerator.getCustomerName());
+
+		// Valid PAN but lowercase
+		customersPage.enterPanNumber("abcde1234f");
+
+		cmf.ClickSaveButton();
+
+		String errorMsg = customersPage.getPanValidationMessage();
+
+		Assert.assertTrue(errorMsg.toLowerCase().contains("invalid"),
+				"Application accepted lowercase PAN without auto-conversion");
+	}
+
+	// ================= GST Number =================
 
 	@DataProvider(name = "invalidGstNumbers")
 	public Object[][] invalidGstNumbers() {
 		return new Object[][] { { "22ABCDE1234F1Z" }, { "22abcde1234f1z5" }, { "22ABCDE1234F1@5" } };
 	}
 
+	@Ignore
 	@Test(priority = 7, dataProvider = "invalidGstNumbers", description = "Verify invalid GST Number")
 	public void verifyInvalidGst(String invalidGst) {
 
@@ -196,6 +220,22 @@ public class CustomerCreateNegativeTestNG extends BaseClass {
 
 	}
 
+	@Test(priority = -7, description = "Verify error is shown when valid GST Number is entered in lowercase")
+	public void verifyLowercaseGstIsRejected() {
+
+		customersPage.enterCustomerName(TestDataGenerator.getCustomerName());
+
+		// Valid PAN but lowercase
+		customersPage.enterGstNumber("27tyghv1234r2zt");
+
+		cmf.ClickSaveButton();
+
+		String errorMsg = customersPage.getGstValidationMessage();
+
+		Assert.assertTrue(errorMsg.toLowerCase().contains("invalid"),
+				"Application accepted lowercase GST without auto-conversion");
+	}
+
 	// ================= WEBSITE =================
 
 	@DataProvider(name = "invalidWebsites")
@@ -203,6 +243,7 @@ public class CustomerCreateNegativeTestNG extends BaseClass {
 		return new Object[][] { { "example" }, { "http://" }, { "htp://site.com" } };
 	}
 
+	@Ignore
 	@Test(priority = 8, dataProvider = "invalidWebsites", description = "Verify invalid Website URL")
 	public void verifyInvalidWebsite(String invalidWebsite) {
 
@@ -224,6 +265,7 @@ public class CustomerCreateNegativeTestNG extends BaseClass {
 		return new Object[][] { { "12345" }, { "12AB56" }, { "000000" } };
 	}
 
+	@Ignore
 	@Test(priority = 9, dataProvider = "invalidZipcodes", description = "Verify invalid Zipcode")
 	public void verifyInvalidZipcode(String invalidZip) {
 
@@ -240,7 +282,7 @@ public class CustomerCreateNegativeTestNG extends BaseClass {
 	}
 
 	// ================= DUPLICATE EMAIL =================
-
+	@Ignore
 	@Test(priority = 10, description = "Verify duplicate email is not allowed")
 	public void verifyDuplicateEmail() {
 

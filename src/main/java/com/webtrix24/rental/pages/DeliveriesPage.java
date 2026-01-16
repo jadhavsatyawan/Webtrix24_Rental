@@ -1,10 +1,7 @@
 package com.webtrix24.rental.pages;
 
 import java.time.Duration;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.concurrent.TimeoutException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -35,7 +32,7 @@ public class DeliveriesPage extends BasePage {
 		// TODO Auto-generated constructor stub
 		dropdownUtil = new DropdownUtil(driver);
 		// reactCalendarUtil = new ReactCalendarUtil(driver);
-		randomGenerationUtils = new RandomGenerationUtils(driver);
+
 		// datePickerUtil = new DatePickerUtil(driver);
 
 		searselectProduct = new SearchandselectproductDropdownUtility(driver);
@@ -293,7 +290,7 @@ public class DeliveriesPage extends BasePage {
 	public void setBuyersOrderNumber(String baseSerial) {
 		buyersOrderNo.click();
 		// Generate unique serial number (base + random)
-		String uniqueSerial = randomGenerationUtils.generateUniqueNumeric(baseSerial, 5);
+		String uniqueSerial = RandomGenerationUtils.generateUniqueNumeric(baseSerial, 5);
 
 		buyersOrderNo.clear();
 		buyersOrderNo.sendKeys(uniqueSerial);

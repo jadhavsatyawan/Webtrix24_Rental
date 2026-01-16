@@ -35,7 +35,7 @@ public class Header extends BasePage {
 
 	// For Dynamic username
 	@FindBy(xpath = "//div[contains(@class,'font-semibold') and contains(@class,'text-base')]")
-	WebElement DpopupUserName;
+	WebElement dynamicUserName;
 
 	/*************************** Actions method **********************/
 
@@ -50,8 +50,8 @@ public class Header extends BasePage {
 
 	public String getLoggedInUserNameFromPopup() {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.visibilityOf(popupUserName));
-		return popupUserName.getText().trim();
+		wait.until(ExpectedConditions.visibilityOf(dynamicUserName));
+		return dynamicUserName.getText().trim();
 	}
 
 }
