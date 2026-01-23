@@ -5,7 +5,6 @@ import java.lang.reflect.Method;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import com.webtrix24.rental.core.BaseClass;
@@ -53,7 +52,7 @@ public class CustomerCreatePositiveTest extends BaseClass {
 	}
 
 	/********************* POSITIVE TEST CASES ***********************************/
-	@Ignore
+
 	@Test(priority = 1, description = "Verify Assignee field is auto-filled with logged-in user in Create Customer form")
 	public void verifyAssigneeAutoFilledWithLoggedInUser() throws Exception {
 		// Step 1: Get logged-in user name from header/profile
@@ -82,7 +81,6 @@ public class CustomerCreatePositiveTest extends BaseClass {
 		Assert.assertEquals(actualAssignee, expectedUserName, "Assignee field is not auto-filled with logged-in user");
 	}
 
-	@Ignore
 	@Test(priority = 2, description = "Verify customer can be created with only valid Customer Name", enabled = false)
 	public void shouldCreateCustomerWithOnlyCustomerName() throws InterruptedException {
 
@@ -98,7 +96,6 @@ public class CustomerCreatePositiveTest extends BaseClass {
 		Assert.assertTrue(toastMsg.toLowerCase().contains("success"), "Unexpected toast: " + toastMsg);
 	}
 
-	@Ignore
 	@Test(priority = 3, description = "Verify customer can be created when optional Source field is selected")
 	public void shouldCreateCustomerWithOnlySelectingSource() throws InterruptedException {
 
@@ -110,7 +107,6 @@ public class CustomerCreatePositiveTest extends BaseClass {
 		Assert.assertTrue(toast.toLowerCase().contains("success"));
 	}
 
-	@Ignore
 	@Test(priority = 4, description = "Create  customer with valid Email")
 	public void createEMailCustomer() throws InterruptedException {
 
@@ -121,7 +117,6 @@ public class CustomerCreatePositiveTest extends BaseClass {
 		Assert.assertTrue(toast.toLowerCase().contains("success"));
 	}
 
-	@Ignore
 	@Test(priority = 5, description = "Create  customer with valid Mobile number")
 	public void createMobileCustomer() throws InterruptedException {
 
@@ -132,7 +127,6 @@ public class CustomerCreatePositiveTest extends BaseClass {
 		Assert.assertTrue(toast.toLowerCase().contains("success"));
 	}
 
-	@Ignore
 	@Test(priority = 6, description = "Create  customer with valid Mobile number Same Whatsapp number")
 	public void createCustomerMobileNumberWhatsaaNumberSame() throws InterruptedException {
 
@@ -146,7 +140,6 @@ public class CustomerCreatePositiveTest extends BaseClass {
 		Assert.assertTrue(toast.toLowerCase().contains("success"));
 	}
 
-	@Ignore
 	@Test(priority = 7, description = "Create  customer with valid Mobile number Different Whatsapp number")
 	public void createCustomerMobileNumberWhatsaaNumberDifferent() throws InterruptedException {
 
@@ -160,7 +153,6 @@ public class CustomerCreatePositiveTest extends BaseClass {
 		Assert.assertTrue(toast.toLowerCase().contains("success"));
 	}
 
-	@Ignore
 	@Test(priority = 8, description = "Verify Billing Name is saved same as Customer Name after successful save", enabled = false)
 	public void verifyCustomerAndBillingNameSame_AfterSave() {
 
@@ -192,7 +184,6 @@ public class CustomerCreatePositiveTest extends BaseClass {
 		// "Billing Name mismatch in saved record");
 	}
 
-	@Ignore
 	@Test(priority = 9, description = "Verify Billing Name can be saved different from Customer Name after successful save")
 	public void verifyCustomerAndBillingNameDifferent_AfterSave() {
 
@@ -216,7 +207,6 @@ public class CustomerCreatePositiveTest extends BaseClass {
 
 	}
 
-	@Ignore
 	@Test(priority = 10, description = "Verify customer can be created with Customer Name and Billing Address")
 	public void verifyCustomerWithBillingAddress() {
 
@@ -233,7 +223,6 @@ public class CustomerCreatePositiveTest extends BaseClass {
 
 	}
 
-	@Ignore
 	@Test(priority = 11, description = "Verify customer can be created with valid Zipcode")
 	public void verifyCustomerWithZipcode() {
 
@@ -256,7 +245,6 @@ public class CustomerCreatePositiveTest extends BaseClass {
 		System.out.println("Customer created successfully with Name: " + customerName + " and Zipcode: " + zipcode);
 	}
 
-	@Ignore
 	@Test(priority = 12, description = "Create  customer with valid Aadhar number")
 	public void createAadharCustomer() throws InterruptedException {
 
@@ -267,7 +255,6 @@ public class CustomerCreatePositiveTest extends BaseClass {
 		Assert.assertTrue(toast.toLowerCase().contains("success"));
 	}
 
-	@Ignore
 	@Test(priority = 13, description = "Create  customer with valid Pan number")
 	public void createPanCustomer() throws InterruptedException {
 
@@ -278,7 +265,6 @@ public class CustomerCreatePositiveTest extends BaseClass {
 		Assert.assertTrue(toast.toLowerCase().contains("success"));
 	}
 
-	@Ignore
 	@Test(priority = 14, description = "Verify customer can be created with valid Website URL")
 	public void verifyCustomerWithWebsite() {
 
@@ -301,7 +287,6 @@ public class CustomerCreatePositiveTest extends BaseClass {
 		System.out.println("Customer created successfully with Name: " + customerName + " and Website: " + websiteUrl);
 	}
 
-	@Ignore
 	@Test(priority = 15, description = "Create GST customer with valid GST number")
 	public void createGstCustomer() throws InterruptedException {
 
@@ -313,7 +298,6 @@ public class CustomerCreatePositiveTest extends BaseClass {
 		Assert.assertTrue(toast.toLowerCase().contains("success"));
 	}
 
-	@Ignore
 	@Test(priority = 16, description = "Create customer with valid GST State")
 	public void createCustomerValidGstState() {
 
@@ -327,7 +311,6 @@ public class CustomerCreatePositiveTest extends BaseClass {
 		Assert.assertTrue(toast.toLowerCase().contains("success"));
 	}
 
-	@Ignore
 	@Test(priority = 17, description = "Verify customer can be created with all valid inputs in Customer form")
 	public void verifyValidCustomerFormInput() throws InterruptedException {
 
@@ -346,7 +329,6 @@ public class CustomerCreatePositiveTest extends BaseClass {
 		Assert.assertTrue(toastMsg.toLowerCase().contains("success"), "Unexpected toast: " + toastMsg);
 	}
 
-	@Ignore
 	@Test(priority = 18, description = "Verify Save & New clears all fields except default Assignee")
 	public void verifySaveAndNewClearsFormExceptAssignee() throws InterruptedException {
 
@@ -387,7 +369,6 @@ public class CustomerCreatePositiveTest extends BaseClass {
 		System.out.println("Save & New verified: All fields empty, Assignee auto-filled = " + assignee);
 	}
 
-	@Ignore
 	@Test(priority = 19, description = "Verify PAN number is automatically converted to uppercase on save")
 	public void verifyPanNumberAutoConvertedToUppercase() {
 
@@ -406,7 +387,8 @@ public class CustomerCreatePositiveTest extends BaseClass {
 
 	// ===== Customer Create with Valid Random Data===========
 
-	@Test(priority = 17, description = "Verify customer can be created with all valid inputs in Customer form")
+	@Test(priority = 17, groups = {
+			"regeression" }, description = "Verify customer can be created with all valid inputs in Customer form")
 	public void verifyValidCustomerForm() throws InterruptedException {
 
 		// Step 2: All fields

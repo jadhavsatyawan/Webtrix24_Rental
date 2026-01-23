@@ -143,7 +143,7 @@ public class Cust_old_negative extends BaseClass {
 		if (isErrorDisplayed) {
 			extentTest.pass("PASS | Invalid Customer Name rejected " + invalidName);
 		} else {
-			extentTest.fail("BUG | Invalid Customer Name ACCEPTED " + invalidName);
+			Assert.fail("BUG | Invalid Customer Name ACCEPTED " + invalidName);
 		}
 
 		Assert.assertTrue(isErrorDisplayed, "BUG: Invalid Customer Name ACCEPTED " + invalidName);
@@ -194,7 +194,7 @@ public class Cust_old_negative extends BaseClass {
 		if (isErrorDisplayed) {
 			extentTest.pass("PASS | Invalid Customer Email rejected  " + invalidEmail);
 		} else {
-			extentTest.fail("BUG | Invalid Customer Email ACCEPTED " + invalidEmail);
+			Assert.fail("BUG | Invalid Customer Email ACCEPTED " + invalidEmail);
 		}
 
 		Assert.assertTrue(isErrorDisplayed, "BUG: Invalid Email ACCEPTED " + invalidEmail);
@@ -248,7 +248,7 @@ public class Cust_old_negative extends BaseClass {
 		if (isErrorDisplayed) {
 			extentTest.pass("PASS | Invalid Mobile Number rejected  " + invalidMobile);
 		} else {
-			extentTest.fail("BUG | Invalid Mobile Number ACCEPTED " + invalidMobile);
+			Assert.fail("BUG | Invalid Mobile Number ACCEPTED " + invalidMobile);
 		}
 
 		Assert.assertTrue(isErrorDisplayed, "BUG: Invalid Mobile Number ACCEPTED " + invalidMobile);
@@ -307,7 +307,7 @@ public class Cust_old_negative extends BaseClass {
 		if (isErrorDisplayed) {
 			extentTest.pass("PASS | Invalid Aadhar Number rejected  " + invalidAadhaar);
 		} else {
-			extentTest.fail("BUG | Invalid Aadhar Number ACCEPTED " + invalidAadhaar);
+			Assert.fail("BUG | Invalid Aadhar Number ACCEPTED " + invalidAadhaar);
 		}
 
 		Assert.assertTrue(isErrorDisplayed, "BUG: Invalid Aadhar Number ACCEPTED " + invalidAadhaar);
@@ -362,7 +362,7 @@ public class Cust_old_negative extends BaseClass {
 		if (isErrorDisplayed) {
 			extentTest.pass("PASS | Invalid PAN Number rejected  " + invalidPan);
 		} else {
-			extentTest.fail("BUG | Invalid PAN Number ACCEPTED " + invalidPan);
+			Assert.fail("BUG | Invalid PAN Number ACCEPTED " + invalidPan);
 		}
 
 		Assert.assertTrue(isErrorDisplayed, "BUG: Invalid PAN Number ACCEPTED " + invalidPan);
@@ -417,7 +417,7 @@ public class Cust_old_negative extends BaseClass {
 		if (isErrorDisplayed) {
 			extentTest.pass("PASS | Invalid GST Number rejected  " + invalidGst);
 		} else {
-			extentTest.fail("BUG | Invalid GST Number ACCEPTED " + invalidGst);
+			Assert.fail("BUG | Invalid GST Number ACCEPTED " + invalidGst);
 		}
 
 		Assert.assertTrue(isErrorDisplayed, "BUG: Invalid GST Number ACCEPTED " + invalidGst);
@@ -474,7 +474,7 @@ public class Cust_old_negative extends BaseClass {
 		if (isErrorDisplayed) {
 			extentTest.pass("PASS | Invalid website URL rejected  " + invalidUrl);
 		} else {
-			extentTest.fail("BUG | Invalid website URL ACCEPTED " + invalidUrl);
+			Assert.fail("BUG | Invalid website URL ACCEPTED " + invalidUrl);
 		}
 
 		Assert.assertTrue(isErrorDisplayed, "BUG: Invalid website URL ACCEPTED " + invalidUrl);
@@ -528,7 +528,7 @@ public class Cust_old_negative extends BaseClass {
 		if (isErrorDisplayed) {
 			extentTest.pass("PASS | Invalid Zipcode rejected  " + invalidZipcode);
 		} else {
-			extentTest.fail("BUG | Invalid Zipcode ACCEPTED " + invalidZipcode);
+			Assert.fail("BUG | Invalid Zipcode ACCEPTED " + invalidZipcode);
 		}
 
 		Assert.assertTrue(isErrorDisplayed, "BUG: Invalid Zipcode ACCEPTED " + invalidZipcode);
@@ -575,7 +575,7 @@ public class Cust_old_negative extends BaseClass {
 		if (isDuplicateEmailError) {
 			extentTest.pass("PASS | Duplicate email correctly rejected " + duplicateEmail);
 		} else {
-			extentTest.fail("BUG  | Duplicate email ACCEPTED " + duplicateEmail + " | Actual Toast: " + toastMsg);
+			Assert.fail("BUG  | Duplicate email ACCEPTED " + duplicateEmail + " | Actual Toast: " + toastMsg);
 		}
 
 		Assert.assertTrue(isDuplicateEmailError, "BUG: Duplicate email allowed. Actual toast: " + toastMsg);

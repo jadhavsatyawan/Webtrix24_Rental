@@ -17,15 +17,14 @@ import com.webtrix24.rental.utils.RandomGenerationUtils;
 import com.webtrix24.rental.utils.SearchandselectproductDropdownUtility;
 
 public class ProductsCreatePage extends BasePage {
+
 	SearchandselectproductDropdownUtility searselectProduct;
 	DropdownUtil dropdownUtil;
 	CommanFunctionalitiesPage cmf;
 	RandomGenerationUtils randomGenerationUtils;
 	CalendarUtil calendarUtil;
 
-	/*****************************
-	 * Constructor
-	 **************************************************/
+	/************** Constructor *************/
 
 	public ProductsCreatePage(WebDriver driver) {
 
@@ -39,9 +38,7 @@ public class ProductsCreatePage extends BasePage {
 
 	}
 
-	/*****************************
-	 * Locators
-	 **************************************************/
+	/************* Locators *********************/
 
 	@FindBy(xpath = "//h2[contains(text(),'Create Product')]")
 	WebElement productFormTitle;
@@ -87,11 +84,14 @@ public class ProductsCreatePage extends BasePage {
 	@FindBy(xpath = "//label[text()='Purchase Date']/following-sibling::div//input")
 	WebElement PurchaseDate;
 
+	@FindBy(xpath = "//label[text()='Purchase Price']/following-sibling::input")
+	WebElement PurchasePrice;
+
 	@FindBy(xpath = "//label[text()='Warranty Up To']/following-sibling::div//input")
 	WebElement WarrantyUpTo;
 
-	@FindBy(xpath = "//label[text()='Purchase Price']/following-sibling::input")
-	WebElement PurchasePrice;
+	@FindBy(xpath = "//input[@id='purchase_from']")
+	WebElement PurchaseRentedFrom;
 
 	@FindBy(xpath = "//input[@inputmode='decimal']")
 	WebElement rentalRateMonthly;
@@ -105,18 +105,22 @@ public class ProductsCreatePage extends BasePage {
 	@FindBy(xpath = "//input[@value='no' and @name='with_tax']")
 	WebElement GstNo;
 
+	@FindBy(xpath = "//input[@id='graphics_card']")
+	WebElement graphicsCard;
+
 	@FindBy(xpath = "//label[text()='Condition']/following-sibling::select")
 	WebElement conditiondropdown; //// option[@value='new']
 
 	@FindBy(xpath = "//label[text()='Barcode']/following-sibling::input")
 	WebElement barcode;
 
+	@FindBy(xpath = "//label[text()='IMEI No.']/following-sibling::input")
+	WebElement IMEINo;
+
 	@FindBy(xpath = "//div[@role='textbox']")
 	WebElement description;
 
-	/*****************************
-	 * Action Methods
-	 **************************************************/
+	/*************** Action Methods *******************/
 
 	public boolean isCreateProductFormDisplayed() {
 		try {
@@ -133,14 +137,14 @@ public class ProductsCreatePage extends BasePage {
 		productName.click();
 	}
 
-	// Method: Get selected product text (verify selected value)
-	public String getSelectedProductValue() {
-		return productName.getAttribute("value").trim();
-	}
-
 	// Method: select product name in dropdown
 	public void selectProduct(String productName) throws InterruptedException {
 		dropdownUtil.selectFromSearchableDropdown(this.productName, productName);// productNameInput
+	}
+
+	// Method: Get selected product text (verify selected value)
+	public String getSelectedProductValue() {
+		return productName.getAttribute("value").trim();
 	}
 
 	public void clickProductTypeField() {
@@ -166,6 +170,19 @@ public class ProductsCreatePage extends BasePage {
 	public void SetProductSerialNumber(String serilaNum) {
 		productSerialNumber.click();
 		productSerialNumber.sendKeys(serilaNum);
+	}
+
+	public void setProductSerialNumber(String baseSerial) {
+		// Generate unique serial number (base + random)
+		String uniqueSerial = RandomGenerationUtils.generateUniqueSerial(baseSerial, 5);
+		productSerialNumber.clear();
+		productSerialNumber.sendKeys(uniqueSerial);
+		System.out.println("Generated Product Serial Number: " + uniqueSerial);
+	}
+
+	// Getter (optional – for verification)
+	public String getEnteredProductSerialNumber() {
+		return productSerialNumber.getAttribute("value");
 	}
 
 	public void clickModelNameField() {
@@ -248,19 +265,6 @@ public class ProductsCreatePage extends BasePage {
 		dropdownUtil.selectFromSearchableDropdown(this.processor, processor);
 	}
 
-	public void setProductSerialNumber(String baseSerial) {
-		// Generate unique serial number (base + random)
-		String uniqueSerial = RandomGenerationUtils.generateUniqueSerial(baseSerial, 5);
-		productSerialNumber.clear();
-		productSerialNumber.sendKeys(uniqueSerial);
-		System.out.println("Generated Product Serial Number: " + uniqueSerial);
-	}
-
-	// Getter (optional – for verification)
-	public String getEnteredProductSerialNumber() {
-		return productSerialNumber.getAttribute("value");
-	}
-
 	public void selectPurchaseDate(String date) {
 		PurchaseDate.click();
 		calendarUtil.selectDateByInput(date);
@@ -276,15 +280,45 @@ public class ProductsCreatePage extends BasePage {
 		calendarUtil.selectDateByInput(date);
 	}
 
+	public void clickPurchaseRentedFrom() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.elementToBeClickable(PurchaseRentedFrom));
+		PurchaseRentedFrom.click();
+	}
+
+	public void selectVendor(String vendor) throws InterruptedException {
+		dropdownUtil.selectFromSearchableDropdown(this.PurchaseRentedFrom, vendor);
+	}
+
 	public void setRentalPrice(String rentalprice) {
 		rentalRateMonthly.click();
 		rentalRateMonthly.sendKeys(rentalprice);
+	}
+
+	public void clickGraphicsCard() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.elementToBeClickable(graphicsCard));
+		graphicsCard.click();
+	}
+
+	public void selectGraphicsCard(String Graphics) throws InterruptedException {
+		dropdownUtil.selectFromSearchableDropdown(this.graphicsCard, Graphics);
 	}
 
 	// Reusable method to select dropdown value
 	public void selectCondition(String conditionValue) {
 		Select select = new Select(conditiondropdown);
 		select.selectByVisibleText(conditionValue); // "New", "Used", etc.
+	}
+
+	public void setBarcode(String bCode) {
+		barcode.click();
+		barcode.sendKeys(bCode);
+	}
+
+	public void setIMEINo(String imei) {
+		IMEINo.click();
+		IMEINo.sendKeys(imei);
 	}
 
 	public void setDesription(String desc) {

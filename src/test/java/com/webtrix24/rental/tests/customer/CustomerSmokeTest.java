@@ -1,5 +1,8 @@
 package com.webtrix24.rental.tests.customer;
 
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.AssertJUnit;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -19,7 +22,8 @@ public class CustomerSmokeTest extends BaseClass
     CommanFunctionalitiesPage cmf;
     CustomersPage customersPage;
 
-    @BeforeClass
+    @BeforeMethod
+	@BeforeClass
     public void setUp() throws InterruptedException{
 
         loginPage = new LoginPage(driver);
@@ -49,7 +53,7 @@ public class CustomerSmokeTest extends BaseClass
     @Test(priority = 3)
     public void verifyCreateCustomerFormOpen() {
         cmf.clickCreateButton();
-        Assert.assertTrue(customersPage.isCreateCustomerFormDisplayed());
+        AssertJUnit.assertTrue(customersPage.isCreateCustomerFormDisplayed());
     }
 
     @Test(priority = 4)

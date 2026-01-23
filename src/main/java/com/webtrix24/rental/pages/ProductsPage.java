@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.webtrix24.rental.base.BasePage;
+import com.webtrix24.rental.utils.DropDownUtilNew;
 import com.webtrix24.rental.utils.DropdownUtil;
 import com.webtrix24.rental.utils.RandomGenerationUtils;
 import com.webtrix24.rental.utils.SearchandselectproductDropdownUtility;
@@ -343,6 +344,22 @@ public class ProductsPage extends BasePage {
 
 	public void selectProductType(String productType) throws InterruptedException {
 		dropdownUtil.selectFromSearchableDropdown(this.productType, productType + Keys.ENTER);// productTYpeInput
+	}
+
+	public void selectProductName(String productName) {
+		DropDownUtilNew.selectFromDropdown(driver, this.productName, productName);
+
+	}
+
+	public String getSelectedProductName() {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		return (String) js.executeScript("return arguments[0].value;", productName);
+	}
+
+	public void selectProductTypeD(String productType) {
+		DropDownUtilNew.selectFromDropdown(driver, this.productType, productType);
+
 	}
 
 	public void selectProductUnit(String productUnit) throws InterruptedException {

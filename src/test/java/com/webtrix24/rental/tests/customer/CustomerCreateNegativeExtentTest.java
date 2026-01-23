@@ -99,7 +99,7 @@ public class CustomerCreateNegativeExtentTest extends BaseClass {
 		if (isErrorDisplayed) {
 			ExtentReportManager1.test.get().pass("PASS | Invalid Customer Name rejected " + invalidName);
 		} else {
-			ExtentReportManager1.test.get().fail("BUG | Invalid Customer Name ACCEPTED  " + invalidName);
+			Assert.fail("BUG | Invalid Customer Name ACCEPTED  " + invalidName);
 		}
 
 		Assert.assertTrue(isErrorDisplayed, "BUG: Invalid Customer Name ACCEPTED " + invalidName);
@@ -135,7 +135,7 @@ public class CustomerCreateNegativeExtentTest extends BaseClass {
 		if (isErrorDisplayed) {
 			ExtentReportManager1.test.get().pass("PASS | Invalid Email rejected  " + invalidEmail);
 		} else {
-			ExtentReportManager1.test.get().fail("BUG | Invalid Email ACCEPTED  " + invalidEmail);
+			Assert.fail("BUG | Invalid Email ACCEPTED  " + invalidEmail);
 		}
 
 		Assert.assertTrue(isErrorDisplayed, "BUG: Invalid Email ACCEPTED " + invalidEmail);
@@ -178,7 +178,7 @@ public class CustomerCreateNegativeExtentTest extends BaseClass {
 		if (isErrorDisplayed) {
 			ExtentReportManager1.test.get().pass("PASS | Invalid Mobile Number rejected  " + invalidMobile);
 		} else {
-			ExtentReportManager1.test.get().fail("BUG | Invalid Mobile Number ACCEPTED  " + invalidMobile);
+			Assert.fail("BUG | Invalid Mobile Number ACCEPTED  " + invalidMobile);
 		}
 
 		Assert.assertTrue(isErrorDisplayed, "BUG: Invalid Mobile Number ACCEPTED " + invalidMobile);
@@ -224,7 +224,7 @@ public class CustomerCreateNegativeExtentTest extends BaseClass {
 		if (isErrorDisplayed) {
 			ExtentReportManager1.test.get().pass("PASS | Invalid Aadhaar rejected  " + invalidAadhaar);
 		} else {
-			ExtentReportManager1.test.get().fail("BUG | Invalid Aadhaar ACCEPTED " + invalidAadhaar);
+			Assert.fail("BUG | Invalid Aadhaar ACCEPTED " + invalidAadhaar);
 		}
 
 		Assert.assertTrue(isErrorDisplayed, "BUG: Invalid Aadhaar ACCEPTED " + invalidAadhaar);
@@ -269,7 +269,7 @@ public class CustomerCreateNegativeExtentTest extends BaseClass {
 		if (isErrorDisplayed) {
 			ExtentReportManager1.test.get().pass("PASS | Invalid PAN rejected  " + invalidPan);
 		} else {
-			ExtentReportManager1.test.get().fail("BUG | Invalid PAN ACCEPTED " + invalidPan);
+			Assert.fail("BUG | Invalid PAN ACCEPTED " + invalidPan);
 		}
 
 		Assert.assertTrue(isErrorDisplayed, "BUG: Invalid PAN ACCEPTED " + invalidPan);
@@ -314,7 +314,7 @@ public class CustomerCreateNegativeExtentTest extends BaseClass {
 		if (isErrorDisplayed) {
 			ExtentReportManager1.test.get().pass("PASS | Invalid GST rejected  " + invalidGst);
 		} else {
-			ExtentReportManager1.test.get().fail("BUG | Invalid GST ACCEPTED  " + invalidGst);
+			Assert.fail("BUG | Invalid GST ACCEPTED  " + invalidGst);
 		}
 
 		Assert.assertTrue(isErrorDisplayed, "BUG: Invalid GST ACCEPTED " + invalidGst);
@@ -360,7 +360,7 @@ public class CustomerCreateNegativeExtentTest extends BaseClass {
 		if (isErrorDisplayed) {
 			ExtentReportManager1.test.get().pass("PASS | Invalid Website rejected  " + invalidUrl);
 		} else {
-			ExtentReportManager1.test.get().fail("BUG | Invalid Website ACCEPTED  " + invalidUrl);
+			Assert.fail("BUG | Invalid Website ACCEPTED  " + invalidUrl);
 		}
 
 		Assert.assertTrue(isErrorDisplayed, "BUG: Invalid Website ACCEPTED " + invalidUrl);
@@ -396,7 +396,7 @@ public class CustomerCreateNegativeExtentTest extends BaseClass {
 		if (isErrorDisplayed) {
 			ExtentReportManager1.test.get().pass("PASS | Invalid Zipcode rejected " + invalidZipcode);
 		} else {
-			ExtentReportManager1.test.get().fail("BUG | Invalid Zipcode ACCEPTED " + invalidZipcode);
+			Assert.fail("BUG | Invalid Zipcode ACCEPTED " + invalidZipcode);
 		}
 
 		Assert.assertTrue(isErrorDisplayed, "BUG: Invalid Zipcode ACCEPTED " + invalidZipcode);
@@ -425,8 +425,7 @@ public class CustomerCreateNegativeExtentTest extends BaseClass {
 		if (isDuplicateError) {
 			ExtentReportManager1.test.get().pass("PASS | Duplicate email rejected " + duplicateEmail);
 		} else {
-			ExtentReportManager1.test.get()
-					.fail("BUG | Duplicate email ACCEPTED " + duplicateEmail + " | Toast: " + toastMsg);
+			Assert.fail("BUG | Duplicate email ACCEPTED " + duplicateEmail + " | Toast: " + toastMsg);
 		}
 
 		Assert.assertTrue(isDuplicateError, "BUG: Duplicate email allowed. Toast: " + toastMsg);
