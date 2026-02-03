@@ -1,14 +1,9 @@
 package com.webtrix24.rental.pages;
 
-import java.time.Duration;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.webtrix24.rental.base.BasePage;
 import com.webtrix24.rental.utils.AddressUtil;
@@ -16,7 +11,7 @@ import com.webtrix24.rental.utils.DropdownUtil;
 import com.webtrix24.rental.utils.ToastUtil;
 
 public class CustomersPage extends BasePage {
-	ToastUtil toastUtil; // ✅ Declare
+	ToastUtil toastUtil;
 	DropdownUtil dropdownUtil;
 	AddressUtil addressUtil;
 
@@ -25,7 +20,7 @@ public class CustomersPage extends BasePage {
 	public CustomersPage(WebDriver driver) {
 		super(driver);
 
-		toastUtil = new ToastUtil(driver); // ✅ Initialize once
+		toastUtil = new ToastUtil(driver);
 		dropdownUtil = new DropdownUtil(driver);
 
 	}
@@ -46,7 +41,6 @@ public class CustomersPage extends BasePage {
 
 	@FindBy(xpath = "//input[@id='assignee']")
 	WebElement assignee;
-	By dropdownOptions = By.xpath("//div[contains(@class,'cursor-pointer')]//*[normalize-space(text())!='']");
 
 	@FindBy(xpath = "//input[@id='lead_source']")
 	WebElement leadSource;
@@ -155,72 +149,18 @@ public class CustomersPage extends BasePage {
 
 	public String getAssigneeValue() {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.attributeToBeNotEmpty(assignee, "value"));
 		return assignee.getAttribute("value").trim();
 
 	}
 
-	private void selectDropdownOption(WebElement dropdownInput, String value) {
-
-		// ️Open dropdown
-		wait.until(ExpectedConditions.elementToBeClickable(dropdownInput));
-		dropdownInput.click();
-
-		// Type text (to filter list)
-		dropdownInput.clear();
-		dropdownInput.sendKeys(value);
-
-		// WAIT for exact option
-		WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
-				By.xpath("//div[@role='option']//span[contains(normalize-space(),'" + value + "')]")));
-
-		// ACTUAL SELECTION (MOST IMPORTANT)
-		option.click();
-
-		// Click outside to close dropdown (manual behaviour)
-		customerName.click();
-
-		// Ensure value is really set
-		wait.until(ExpectedConditions.attributeToBeNotEmpty(dropdownInput, "value"));
-	}
-
 	public void clickLeadSourceField() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.elementToBeClickable(leadSource));
 		leadSource.click();
 	}
 
 	public void selectSource(String sou) {
-		selectDropdownOption(leadSource, sou);
-	}
-
-	public void selectLeadSource(String value) {
-
-		// 1. Open dropdown
-		wait.until(ExpectedConditions.elementToBeClickable(leadSource)).click();
-
-		// 2. Type value
-		leadSource.clear();
-		leadSource.sendKeys(value);
-
-		// 3. Wait for option SPAN
-		By optionSpanBy = By.xpath("//div[@role='option']//span[normalize-space()='" + value + "']");
-
-		WebElement optionSpan = wait.until(ExpectedConditions.visibilityOfElementLocated(optionSpanBy));
-
-		// 4. REAL mouse click (important)
-		new org.openqa.selenium.interactions.Actions(driver).moveToElement(optionSpan)
-				.pause(java.time.Duration.ofMillis(150)).click().build().perform();
-
-		// 5. FORCE CLOSE dropdown (MOST IMPORTANT)
-		leadSource.sendKeys(Keys.ESCAPE);
-
-		// 6. Wait till dropdown disappears
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@role='listbox']")));
-
-		// 7. Verify value present in input ONLY
-		wait.until(ExpectedConditions.attributeContains(leadSource, "value", value));
+		dropdownUtil.selectFromSearchableDropdown(leadSource, sou);
 	}
 
 	public String getSelectedLeadSource() {
@@ -233,7 +173,6 @@ public class CustomersPage extends BasePage {
 	}
 
 	public String getEmailValidationMessage() {
-		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 		return wait.until(ExpectedConditions.visibilityOf(emailValidationMessage)).getText();
 	}
 
@@ -248,7 +187,6 @@ public class CustomersPage extends BasePage {
 	}
 
 	public String getMobileValidationMessage() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 		return wait.until(ExpectedConditions.visibilityOf(mobileValidationMessage)).getText();
 	}
 
@@ -277,7 +215,6 @@ public class CustomersPage extends BasePage {
 	}
 
 	public String getZipcodeValidationMessage() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 		return wait.until(ExpectedConditions.visibilityOf(zipCodeValidaionMsg)).getText();
 	}
 
@@ -287,7 +224,6 @@ public class CustomersPage extends BasePage {
 	}
 
 	public String getAadhaarValidationMessage() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 		return wait.until(ExpectedConditions.visibilityOf(aadharNumValidaionMsg)).getText();
 	}
 
@@ -297,7 +233,6 @@ public class CustomersPage extends BasePage {
 	}
 
 	public String getPanValidationMessage() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 		return wait.until(ExpectedConditions.visibilityOf(panValidationMsg)).getText();
 	}
 
@@ -311,7 +246,6 @@ public class CustomersPage extends BasePage {
 	}
 
 	public String getGstValidationMessage() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 		return wait.until(ExpectedConditions.visibilityOf(gstNoValidationMsg)).getText();
 	}
 
@@ -321,33 +255,27 @@ public class CustomersPage extends BasePage {
 	}
 
 	public String getWebsiteValidationMessage() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 		return wait.until(ExpectedConditions.visibilityOf(websiteValidationMsg)).getText();
 	}
 
 	public void selectGstState(String stateName) {
-		selectDropdownOption(gststateDropdown, stateName);
+		dropdownUtil.selectFromSearchableDropdown(gststateDropdown, stateName);
 	}
 
 	/*********** Fill Customer Form With All Fields **********/
+
 	public void fillCustomerForm(String name, String source, String email, String phone, String wm, String billNm,
 			String addr, String zip, String adharnum, String panNum, String web, String gstnum, String gstStateSelect)
 			throws InterruptedException {
-
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
 		// Customer Name
 		wait.until(ExpectedConditions.visibilityOf(customerName)).clear();
 		customerName.sendKeys(name);
 
 		// Lead Source
-		// wait.until(ExpectedConditions.elementToBeClickable(leadSource)).click();
 
-		// leadSource.sendKeys(source);
-		// leadSource.sendKeys(Keys.ENTER);
 		leadSource.click();
-		// selectDropdownOption(source);
-		selectDropdownOption(leadSource, source);
+		dropdownUtil.selectFromSearchableDropdown(leadSource, source);
 
 		// Email
 		wait.until(ExpectedConditions.visibilityOf(CustomerEmail)).clear();
@@ -389,43 +317,13 @@ public class CustomersPage extends BasePage {
 		gstNo.clear();
 		gstNo.sendKeys(gstnum);
 
-		// GST State Dropdown
-		// wait.until(ExpectedConditions.elementToBeClickable(gststateDropdown)).click();
 		gststateDropdown.click();
+		dropdownUtil.selectFromSearchableDropdown(gststateDropdown, gstStateSelect);
 
-		// gststateDropdown.sendKeys(gstStateSelect+Keys.ENTER);
-		// selectDropdownOption(gstStateSelect);
-		selectDropdownOption(gststateDropdown, gstStateSelect);
-
-	}
-
-	public void selectGSTStateByName(String stateName) throws InterruptedException {
-		// try {
-		gststateDropdown.click(); // Open dropdown
-		Thread.sleep(2000); // Wait for options to load
-
-		// cmf.refreshDropdwonList();
-//           Thread.sleep(2000); 
-//           System.out.println("Asnf " );
-		// 1️⃣ Get state code from AddressUtil
-		// String stateCode = AddressUtil.getGSTCode(stateName); // e.g., "27"
-
-		// 2️⃣ Prepare expected value in dropdown format
-		String expectedValue = stateName.trim(); // "27-Maharashtra"
-		System.out.println("🔎 Selecting GST State: " + expectedValue);
-		gststateDropdown.sendKeys(expectedValue);
-		SelectState.click();
-
-		System.out.println("GST State selected successfully: " + expectedValue);
-		// }
-// 	     catch (Exception e) {
-// 	        System.out.println("❌ Failed to select GST state: " + e.getMessage());
-// 	        e.printStackTrace();
-// 	        throw new RuntimeException("Failed to select GST state: " + stateName);
-// 	    }
 	}
 
 	/******** Clicking Save & New Button Check All Fields are Empty *********/
+
 	public boolean isCustomerNameEmpty() {
 		return customerName.getAttribute("value").trim().isEmpty();
 	}

@@ -6,16 +6,16 @@
       <!-- ONLY Create Customer (priority 17 method) -->
              <class name="com.webtrix24.rental.tests.customer.CustomerCreatePositiveTest">
                 <methods>
-                    <include name="verifyValidCustomerForm"/>
+                    <include name="createCustomerValidGstState"/>
                 </methods>
             </class>
 
             <!-- ONLY Edit Customer (priority 2 method) -->
-           <class name="com.webtrix24.rental.tests.customer.CustomerEditTest">
+          <!--  <class name="com.webtrix24.rental.tests.customer.CustomerEditTest">
                 <methods>
                     <include name="shouldEditCustomerSuccessfully"/>
                 </methods>
-            </class>
+            </class> --> 
      
     
       

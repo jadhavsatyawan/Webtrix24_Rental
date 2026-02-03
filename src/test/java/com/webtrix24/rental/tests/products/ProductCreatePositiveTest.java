@@ -1,6 +1,7 @@
 package com.webtrix24.rental.tests.products;
 
 import org.testng.Assert;
+import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -8,6 +9,7 @@ import org.testng.annotations.Test;
 import com.webtrix24.rental.core.BaseClass;
 import com.webtrix24.rental.pages.CommanFunctionalitiesPage;
 import com.webtrix24.rental.pages.LoginPage;
+import com.webtrix24.rental.pages.ProductListPage;
 import com.webtrix24.rental.pages.ProductsCreatePage;
 import com.webtrix24.rental.pages.SidePanel;
 import com.webtrix24.rental.utils.ConfigReader;
@@ -18,6 +20,7 @@ public class ProductCreatePositiveTest extends BaseClass {
 	SidePanel sidePanel;
 	CommanFunctionalitiesPage cmf;
 	ProductsCreatePage productsCreate;
+	ProductListPage pListPage;
 
 	// Login & basic navigation – ONLY ONCE
 	@BeforeClass
@@ -27,6 +30,7 @@ public class ProductCreatePositiveTest extends BaseClass {
 		sidePanel = new SidePanel(driver);
 		cmf = new CommanFunctionalitiesPage(driver);
 		productsCreate = new ProductsCreatePage(driver);
+		pListPage = new ProductListPage(driver);
 		// Login
 		loginPage.login(ConfigReader.getProperty("app.username"), ConfigReader.getProperty("app.password"));
 		Thread.sleep(2000);
@@ -43,30 +47,6 @@ public class ProductCreatePositiveTest extends BaseClass {
 		Assert.assertTrue(productsCreate.isCreateProductFormDisplayed(), "Create Product form not opened");
 	}
 
-	/*
-	 * @Test(priority = 1, description =
-	 * "Verify product selection from dropdown in Create Product form") public void
-	 * verifyProductSelectionFromDropdown() throws InterruptedException {
-	 * 
-	 * // Step 2: Select Product Name productsCreate.selectProduct("Mac Studio");
-	 * 
-	 * // ✅ Verify selection BEFORE save (valid check) String selectedProduct =
-	 * productsCreate.getSelectedProductValue();
-	 * Assert.assertEquals(selectedProduct, "Mac Studio",
-	 * "Product Name not selected properly");
-	 * 
-	 * // Step 3: Select Product Type productsCreate.selectProductType("Laptop");
-	 * 
-	 * // Step 4: Enter Serial Number
-	 * productsCreate.setProductSerialNumber("mac-Lp3451");
-	 * 
-	 * // Step 5: Click Save & capture toast String toastMessage =
-	 * cmf.clickSaveAndGetToast();
-	 * 
-	 * // ✅ Correct assertion AFTER save Assert.assertEquals(toastMessage,
-	 * "Saved successfully", "❌ Product not saved successfully"); }
-	 */
-
 	@Test(priority = 1, description = "Verify product selection from dropdown in Create Product form")
 	public void verifyProductSelectionFromDropdown() throws InterruptedException {
 
@@ -78,7 +58,7 @@ public class ProductCreatePositiveTest extends BaseClass {
 
 		// Step 4: Verify selection
 		String selectedValue = productsCreate.getSelectedProductValue();
-		Assert.assertEquals(selectedValue, "Lava Magnum Laptop", "Product selection failed!");
+		AssertJUnit.assertEquals(selectedValue, "Lava Magnum Laptop", "Product selection failed!");
 		System.out.println("Product selected successfully: " + selectedValue);
 	}
 
@@ -219,13 +199,26 @@ public class ProductCreatePositiveTest extends BaseClass {
 		// productsPage.selectPurchaseDate(LocalDate.now().toString()); // "2025-10-29"
 	}
 
-	@Test(priority = 16, description = "Verify product Rental Rate Monthly  Enter in Field  in Create Product form")
+	@Test(priority = 16, description = "Verify vendor selection from dropdown in Create Product form")
+	public void verifyProductVendorSelectionFromDropdown() throws InterruptedException {
+
+		// Step 1: Click on Vendor (Purchase / Rented From) field
+		productsCreate.clickPurchaseRentedFrom();
+
+		// Step 2: Select Vendor from dropdown
+		productsCreate.selectVendor("Kaveri Technology");
+
+	}
+
+	@Test(priority = 17, description = "Verify product Rental Rate Monthly  Enter in Field  in Create Product form")
 	public void verifyRentalRateMonthlyEntred() {
 		productsCreate.setRentalPrice("1400");
 
 	}
 
 	/*
+	 * This Field is Removed From Product Create Form
+	 * 
 	 * @Test(priority = 17, description =
 	 * "Verify product with Gst Selction Yes and Enter Gst Amount in Field in Create Product form"
 	 * ) public void verifySelectGstYestEnterGstAmount() {
@@ -234,18 +227,118 @@ public class ProductCreatePositiveTest extends BaseClass {
 	 * }
 	 */
 
-	@Test(priority = 18, description = "Verify Condition Selction Dropdown  in Create Product form")
+	@Test(priority = 18, description = "Verify Graphics Card selection from dropdown in Create Product form")
+	public void verifyProductVGraphicsCardFromDropdown() throws InterruptedException {
+
+		// Step 1: Click on Vendor (Purchase / Rented From) field
+		productsCreate.clickGraphicsCard();
+
+		// Step 2: Select Vendor from dropdown
+		productsCreate.selectGraphicsCard("4GB AMD");
+
+	}
+
+	@Test(priority = 19, description = "Verify Condition Selction Dropdown  in Create Product form")
 	public void verifyConditionDropdown() {
 
 		productsCreate.selectCondition("Refurbished");
 	}
 
-	@Test(priority = 19, description = "Verify Description  text  Enter in Field  in Create Product form")
+	@Test(priority = 20, description = "Verify Barcode is Enter Manuallay in Field  in Create Product form")
+	public void verifyBarcodeEnterManually() {
+		productsCreate.setBarcode("WS-1234");
+
+	}
+
+	@Test(priority = 21, description = "Verify IMEI No.  is Enter  in Field  in Create Product form")
+	public void verifyIMEINo() {
+		productsCreate.setIMEINo("234536476476488");
+
+	}
+
+	@Test(priority = 22, description = "Verify Description  text  Enter in Field  in Create Product form")
 	public void verifyDescription() throws InterruptedException {
 		productsCreate.setDesription("New");
 		cmf.clickSaveAndGetToast();
 		Thread.sleep(2000);
 
+	}
+
+	@Test(priority = 23, description = "Verify user can cancel product creation without saving", groups = {
+			"cancalform" })
+	public void verifyCancelProductCreation() {
+
+		// cmf.clickCreateButton();
+		// Assert.assertTrue(productsCreate.isCreateProductFormDisplayed(), "Create
+		// Product form not opened");
+
+		// Click Cancel
+		cmf.formCancalButton();
+		// Verify form closed
+		Assert.assertFalse(productsCreate.isCreateProductFormDisplayed(),
+				"Create Product form should be closed after Cancel");
+
+		// Verify user is still on Products page
+		Assert.assertTrue(pListPage.isProductsRecentActivityButtonVisible(),
+				"User should remain on Products module after Cancel");
+	}
+
+	@Test(priority = 10, description = "Verify barcode is auto-generated when not entered manually")
+	public void shouldAutoGenerateBarcodeWhenNotEntered() throws InterruptedException {
+
+		productsCreate.selectProduct("Sony Vaio Laptop");
+		productsCreate.selectProductType("laptop");
+		productsCreate.setProductSerialNumber("AUTO-BC-08");
+
+		// Do NOT enter barcode
+
+		String toast = cmf.clickSaveAndGetToast();
+		Assert.assertTrue(toast.contains("Saved"), "Product not saved successfully");
+
+		// Reopen product (assume method exists)
+		pListPage.openLatestProductForEdit();
+
+		String barcodeValue = productsCreate.getBarcodeValue();
+
+		Assert.assertFalse(barcodeValue.isEmpty(), "Barcode was not auto-generated");
+		System.out.println("Barcode Number is " + barcodeValue);
+	}
+
+	// ================= Products Form FIll All Fields and Click Save Button
+
+	@Test(priority = 24, description = "Verify product can be created with all valid data")
+	public void verifyCreateProductWithAllValidData() throws InterruptedException {
+
+		productsCreate.fillProductFormAndSave("Lava Magnum Laptop", "Laptop", "Per Set", "LG 24MP60G", "A2338",
+				"5th Gen", "512GB SSD", "8 GB", "win 11", "14.3", "intel core i5", "2025-09-03", "78945", "2026-11-01",
+				"Kaveri Technology", "1400", "4GB AMD", "Refurbished", "WS-1234", "234536476476488", "New Laptop");
+
+		String toast = cmf.clickSaveAndGetToast();
+		Assert.assertEquals(toast, "Saved successfully");
+	}
+
+	// ================= Products Form FIll All Fields and Click Save&New Button
+
+	@Test(priority = 24, description = "Verify product can be created with all valid data")
+	public void verifySaveAndNewClearsForm() throws InterruptedException {
+
+		productsCreate.fillProductFormAndSave("Lava Magnum Laptop", "Laptop", "Per Set", "LG 24MP60G", "A2338",
+				"5th Gen", "512GB SSD", "8 GB", "win 11", "14.3", "intel core i5", "2025-09-03", "78945", "2026-11-01",
+				"Kaveri Technology", "1400", "4GB AMD", "Refurbished", "WS-1234", "234536476476488", "New Laptop");
+
+		String toast = cmf.clickSaveAndGetToast();
+		Assert.assertEquals(toast, "Saved successfully");
+	}
+
+	@Test(priority = 30, description = "Verify product can be edited successfully")
+	public void verifyEditProduct() {
+
+		pListPage.openLatestProductForEdit();
+
+		productsCreate.setPurchasePrice("99999");
+		String toast = cmf.clickSaveAndGetToast();
+
+		Assert.assertEquals(toast, "Updated successfully");
 	}
 
 }

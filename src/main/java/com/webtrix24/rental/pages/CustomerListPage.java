@@ -21,6 +21,7 @@ public class CustomerListPage extends BasePage {
 	}
 
 	/****************** Locators ************/// All customer rows (each row is a flex group)
+
 	@FindBy(xpath = "//div[contains(@class,'group') and .//button[@title='Customer Edit']]")
 	private List<WebElement> customerRows;
 
@@ -58,6 +59,7 @@ public class CustomerListPage extends BasePage {
 	}
 
 	/****************** Action Methods ************/
+
 	public void openFirstCustomerEditForm() {
 		wait.until(driver -> customerRows.size() > 0);
 
@@ -125,9 +127,7 @@ public class CustomerListPage extends BasePage {
 		return true;
 	}
 
-	/**
-	 * ⏳ Wait till search debounce + API load completes
-	 */
+	/** Wait till search debounce + API load completes **/
 	public void waitForSearchToSettle() {
 		wait.until(driver -> {
 			try {

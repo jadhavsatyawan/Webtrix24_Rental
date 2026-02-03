@@ -2,6 +2,7 @@ package com.webtrix24.rental.tests.Login;
 
 import org.testng.annotations.Test;
 import org.testng.annotations.Test;
+import org.testng.annotations.Test;
 
 import com.webtrix24.rental.core.BaseClass;
 import com.webtrix24.rental.pages.LoginPage;
