@@ -13,6 +13,7 @@ import com.webtrix24.rental.pages.CustomersPage;
 import com.webtrix24.rental.pages.LoginPage;
 import com.webtrix24.rental.pages.SidePanel;
 import com.webtrix24.rental.utils.ConfigReader;
+import com.webtrix24.rental.utils.TestDataGenerator;
 
 public class CustomerCreateNegativeTestNG extends BaseClass {
 
@@ -24,7 +25,7 @@ public class CustomerCreateNegativeTestNG extends BaseClass {
 	// ================= SETUP =================
 
 	@BeforeClass
-	public void setUp() throws InterruptedException {
+	public void setUpCustomerCreate() throws InterruptedException {
 
 		loginPage = new LoginPage(driver);
 		sidePanel = new SidePanel(driver);
@@ -174,7 +175,23 @@ public class CustomerCreateNegativeTestNG extends BaseClass {
 
 	}
 
-	// ================= GST =================
+	@Test(priority = -7, description = "Verify error is shown when valid PAN is entered in lowercase")
+	public void verifyLowercasePanIsRejected() {
+
+		customersPage.enterCustomerName(TestDataGenerator.getCustomerName());
+
+		// Valid PAN but lowercase
+		customersPage.enterPanNumber("abcde1234f");
+
+		cmf.ClickSaveButton();
+
+		String errorMsg = customersPage.getPanValidationMessage();
+
+		Assert.assertTrue(errorMsg.toLowerCase().contains("invalid"),
+				"Application accepted lowercase PAN without auto-conversion");
+	}
+
+	// ================= GST Number =================
 
 	@DataProvider(name = "invalidGstNumbers")
 	public Object[][] invalidGstNumbers() {
@@ -194,6 +211,22 @@ public class CustomerCreateNegativeTestNG extends BaseClass {
 				"Invalid GST accepted: " + invalidGst);
 		System.out.println("Invalid GST rejected successfully: " + invalidGst);
 
+	}
+
+	@Test(priority = -7, description = "Verify error is shown when valid GST Number is entered in lowercase")
+	public void verifyLowercaseGstIsRejected() {
+
+		customersPage.enterCustomerName(TestDataGenerator.getCustomerName());
+
+		// Valid PAN but lowercase
+		customersPage.enterGstNumber("27tyghv1234r2zt");
+
+		cmf.ClickSaveButton();
+
+		String errorMsg = customersPage.getGstValidationMessage();
+
+		Assert.assertTrue(errorMsg.toLowerCase().contains("invalid"),
+				"Application accepted lowercase GST without auto-conversion");
 	}
 
 	// ================= WEBSITE =================

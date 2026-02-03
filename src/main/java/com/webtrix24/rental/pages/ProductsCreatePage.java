@@ -2,7 +2,7 @@ package com.webtrix24.rental.pages;
 
 import java.time.Duration;
 
-import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,15 +17,14 @@ import com.webtrix24.rental.utils.RandomGenerationUtils;
 import com.webtrix24.rental.utils.SearchandselectproductDropdownUtility;
 
 public class ProductsCreatePage extends BasePage {
+
 	SearchandselectproductDropdownUtility searselectProduct;
 	DropdownUtil dropdownUtil;
 	CommanFunctionalitiesPage cmf;
 	RandomGenerationUtils randomGenerationUtils;
 	CalendarUtil calendarUtil;
 
-	/*****************************
-	 * Constructor
-	 **************************************************/
+	/************** Constructor *************/
 
 	public ProductsCreatePage(WebDriver driver) {
 
@@ -33,32 +32,46 @@ public class ProductsCreatePage extends BasePage {
 
 		dropdownUtil = new DropdownUtil(driver);
 		cmf = new CommanFunctionalitiesPage(driver);
-		randomGenerationUtils = new RandomGenerationUtils(driver);
+
 		searselectProduct = new SearchandselectproductDropdownUtility(driver);
 		calendarUtil = new CalendarUtil(driver);
 
 	}
 
-	/*****************************
-	 * Locators
-	 **************************************************/
+	/************* Locators *********************/
 
 	@FindBy(xpath = "//h2[contains(text(),'Create Product')]")
-	WebElement productFormTitle;
+	WebElement productCreateFormTitle;
+
+	@FindBy(xpath = "//h2[contains(text(),'Duplicate Product')]")
+	WebElement duplicateFormTitle;
+
+	@FindBy(xpath = "//h2[contains(text(),'Update Product')]")
+	WebElement UpdateFormTitle;
 
 	@FindBy(xpath = "//input[@id='product_name']")
 	WebElement productName;
 
-	By dropdownOptions = By.xpath("//div[contains(@class,'cursor-pointer')]//*[normalize-space(text())!='']");
+	@FindBy(xpath = "//div[contains(text(),'Product / Service Name is required.')]")
+	WebElement productNameRequiredError;
 
 	@FindBy(xpath = "//input[@id='product_type']")
 	WebElement productType;
 
+	@FindBy(xpath = "//div[contains(text(),'Product Type is required.')]")
+	WebElement productTypeRequiredError;
+
 	@FindBy(xpath = "//input[@id='unit']")
 	WebElement unit;
 
-	@FindBy(xpath = "//label[text()='Product Serial No']/following-sibling::input")
+	@FindBy(xpath = "// label[text()='Product Serial No']/following-sibling::input")
 	WebElement productSerialNumber;
+
+	@FindBy(xpath = "//div[contains(text(),'Product Serial No is required.')]")
+	WebElement serailNumberRequiredError;
+
+	// Duplicate serail number totast messages Error: Product Serial No Already
+	// Exists!
 
 	@FindBy(xpath = "//input[@id='model_name']")
 	WebElement modelName;
@@ -87,11 +100,14 @@ public class ProductsCreatePage extends BasePage {
 	@FindBy(xpath = "//label[text()='Purchase Date']/following-sibling::div//input")
 	WebElement PurchaseDate;
 
+	@FindBy(xpath = "//label[text()='Purchase Price']/following-sibling::input")
+	WebElement PurchasePrice;
+
 	@FindBy(xpath = "//label[text()='Warranty Up To']/following-sibling::div//input")
 	WebElement WarrantyUpTo;
 
-	@FindBy(xpath = "//label[text()='Purchase Price']/following-sibling::input")
-	WebElement PurchasePrice;
+	@FindBy(xpath = "//input[@id='purchase_from']")
+	WebElement PurchaseRentedFrom;
 
 	@FindBy(xpath = "//input[@inputmode='decimal']")
 	WebElement rentalRateMonthly;
@@ -105,22 +121,46 @@ public class ProductsCreatePage extends BasePage {
 	@FindBy(xpath = "//input[@value='no' and @name='with_tax']")
 	WebElement GstNo;
 
+	@FindBy(xpath = "//input[@id='graphics_card']")
+	WebElement graphicsCard;
+
 	@FindBy(xpath = "//label[text()='Condition']/following-sibling::select")
 	WebElement conditiondropdown; //// option[@value='new']
 
 	@FindBy(xpath = "//label[text()='Barcode']/following-sibling::input")
 	WebElement barcode;
 
+	// Duplicate Barcode Toast Message
+	// Error: System Error : Duplicate barcode for this company. Please contact
+	// support team.
+
+	@FindBy(xpath = "//label[text()='IMEI No.']/following-sibling::input")
+	WebElement IMEINo;
+
 	@FindBy(xpath = "//div[@role='textbox']")
 	WebElement description;
 
-	/*****************************
-	 * Action Methods
-	 **************************************************/
+	/*************** Action Methods *******************/
 
 	public boolean isCreateProductFormDisplayed() {
 		try {
-			return productFormTitle.isDisplayed(); // Access directly — PageFactory initialized it
+			return productCreateFormTitle.isDisplayed(); // Access directly — PageFactory initialized it
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public boolean isUpdateProductFormDisplayed() {
+		try {
+			return UpdateFormTitle.isDisplayed(); // Access directly — PageFactory initialized it
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public boolean isDuplicateProductFormDisplayed() {
+		try {
+			return duplicateFormTitle.isDisplayed(); // Access directly — PageFactory initialized it
 		} catch (Exception e) {
 			return false;
 		}
@@ -128,14 +168,8 @@ public class ProductsCreatePage extends BasePage {
 
 	// Method: Click on Product Name field to open dropdown
 	public void clickProductNameField() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.elementToBeClickable(productName));
 		productName.click();
-	}
-
-	// Method: Get selected product text (verify selected value)
-	public String getSelectedProductValue() {
-		return productName.getAttribute("value").trim();
 	}
 
 	// Method: select product name in dropdown
@@ -143,8 +177,17 @@ public class ProductsCreatePage extends BasePage {
 		dropdownUtil.selectFromSearchableDropdown(this.productName, productName);// productNameInput
 	}
 
+	// Method: Get selected product text (verify selected value)
+	public String getSelectedProductValue() {
+		return productName.getAttribute("value").trim();
+	}
+
+	public String getProductNameValidationMessage() {
+
+		return productNameRequiredError.getText().trim();
+	}
+
 	public void clickProductTypeField() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.elementToBeClickable(productType));
 		productType.click();
 	}
@@ -153,23 +196,69 @@ public class ProductsCreatePage extends BasePage {
 		dropdownUtil.selectFromSearchableDropdown(this.productType, productType);// productTYpeInput
 	}
 
+	public String getProducTypeValidationMessage() {
+
+		return productTypeRequiredError.getText().trim();
+	}
+
 	public void clickProductUnitField() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.elementToBeClickable(unit));
 		unit.click();
+
 	}
 
 	public void selectProductUnit(String productUnit) throws InterruptedException {
 		dropdownUtil.selectFromSearchableDropdown(this.unit, productUnit);// productTYpeInput
 	}
 
-	public void SetProductSerialNumber(String serilaNum) {
+	public String getSelectedunit() {
+		return unit.getAttribute("value").trim();
+	}
+
+	public void clearDropdownByKeyboard(WebElement dropdownInput) {
+
+		wait.until(ExpectedConditions.elementToBeClickable(dropdownInput));
+
+		dropdownInput.click();
+		dropdownInput.sendKeys(Keys.CONTROL + "a");
+		dropdownInput.sendKeys(Keys.DELETE);
+
+		// React state settle होण्यासाठी
+		wait.until(ExpectedConditions.attributeToBe(dropdownInput, "value", ""));
+	}
+
+	public void SetProductSerialNumberManual(String serilaNum) {
 		productSerialNumber.click();
 		productSerialNumber.sendKeys(serilaNum);
 	}
 
+	public void setProductSerialNumber(String baseSerial) {
+		// Generate unique serial number (base + random)
+		String uniqueSerial = RandomGenerationUtils.generateUniqueSerial(baseSerial, 5);
+		productSerialNumber.clear();
+		productSerialNumber.sendKeys(uniqueSerial);
+		System.out.println("Generated Product Serial Number: " + uniqueSerial);
+	}
+
+	// Getter (optional – for verification)
+	public String getEnteredProductSerialNumber() {
+		waitForDuplicateFormFields();
+		return productSerialNumber.getAttribute("value").trim();
+	}
+
+	public void waitForDuplicateFormFields() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+
+		// wait till serial number input is PRESENT & VISIBLE
+		wait.until(ExpectedConditions.visibilityOf(productSerialNumber));
+	}
+
+	public String getProducSerailNumberValidationMessage() {
+
+		return serailNumberRequiredError.getText().trim();
+	}
+
 	public void clickModelNameField() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.elementToBeClickable(modelName));
 		modelName.click();
 	}
@@ -178,8 +267,12 @@ public class ProductsCreatePage extends BasePage {
 		dropdownUtil.selectFromSearchableDropdown(this.modelName, modelNm);
 	}
 
+	public String getEnteredProductModelNameString() {
+		waitForDuplicateFormFields();
+		return modelName.getAttribute("value").trim();
+	}
+
 	public void clickModelNumField() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.elementToBeClickable(modelNumber));
 		modelNumber.click();
 	}
@@ -189,7 +282,6 @@ public class ProductsCreatePage extends BasePage {
 	}
 
 	public void clickGenerationField() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.elementToBeClickable(generation));
 		generation.click();
 	}
@@ -199,7 +291,6 @@ public class ProductsCreatePage extends BasePage {
 	}
 
 	public void clickHddCpacityField() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.elementToBeClickable(hddCapacity));
 		hddCapacity.click();
 	}
@@ -209,7 +300,6 @@ public class ProductsCreatePage extends BasePage {
 	}
 
 	public void clickMemoryField() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.elementToBeClickable(memory));
 		memory.click();
 	}
@@ -219,7 +309,6 @@ public class ProductsCreatePage extends BasePage {
 	}
 
 	public void clickOperatingSystemField() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.elementToBeClickable(operatingSystem));
 		operatingSystem.click();
 	}
@@ -229,7 +318,6 @@ public class ProductsCreatePage extends BasePage {
 	}
 
 	public void clickScreenSizeField() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.elementToBeClickable(screensize));
 		screensize.click();
 	}
@@ -239,26 +327,12 @@ public class ProductsCreatePage extends BasePage {
 	}
 
 	public void clickProcessorField() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.elementToBeClickable(processor));
 		processor.click();
 	}
 
 	public void selectProcessor(String processor) throws InterruptedException {
 		dropdownUtil.selectFromSearchableDropdown(this.processor, processor);
-	}
-
-	public void setProductSerialNumber(String baseSerial) {
-		// Generate unique serial number (base + random)
-		String uniqueSerial = randomGenerationUtils.generateUniqueSerial(baseSerial, 5);
-		productSerialNumber.clear();
-		productSerialNumber.sendKeys(uniqueSerial);
-		System.out.println("Generated Product Serial Number: " + uniqueSerial);
-	}
-
-	// Getter (optional – for verification)
-	public String getEnteredProductSerialNumber() {
-		return productSerialNumber.getAttribute("value");
 	}
 
 	public void selectPurchaseDate(String date) {
@@ -268,6 +342,7 @@ public class ProductsCreatePage extends BasePage {
 
 	public void setPurchasePrice(String price) {
 		PurchasePrice.click();
+		PurchasePrice.clear();
 		PurchasePrice.sendKeys(price);
 	}
 
@@ -276,15 +351,49 @@ public class ProductsCreatePage extends BasePage {
 		calendarUtil.selectDateByInput(date);
 	}
 
+	public void clickPurchaseRentedFrom() {
+		wait.until(ExpectedConditions.elementToBeClickable(PurchaseRentedFrom));
+		PurchaseRentedFrom.click();
+	}
+
+	public void selectVendor(String vendor) throws InterruptedException {
+		dropdownUtil.selectFromSearchableDropdown(this.PurchaseRentedFrom, vendor);
+	}
+
 	public void setRentalPrice(String rentalprice) {
 		rentalRateMonthly.click();
 		rentalRateMonthly.sendKeys(rentalprice);
+	}
+
+	public void clickGraphicsCard() {
+		wait.until(ExpectedConditions.elementToBeClickable(graphicsCard));
+		graphicsCard.click();
+	}
+
+	public void selectGraphicsCard(String Graphics) throws InterruptedException {
+		dropdownUtil.selectFromSearchableDropdown(this.graphicsCard, Graphics);
 	}
 
 	// Reusable method to select dropdown value
 	public void selectCondition(String conditionValue) {
 		Select select = new Select(conditiondropdown);
 		select.selectByVisibleText(conditionValue); // "New", "Used", etc.
+	}
+
+	public void setBarcode(String bCode) {
+		barcode.click();
+		barcode.sendKeys(bCode);
+	}
+
+	// Get Barcode value from input field
+	public String getBarcodeValue() {
+		waitForDuplicateFormFields(); // same wait works
+		return barcode.getAttribute("value").trim();
+	}
+
+	public void setIMEINo(String imei) {
+		IMEINo.click();
+		IMEINo.sendKeys(imei);
 	}
 
 	public void setDesription(String desc) {
@@ -297,6 +406,70 @@ public class ProductsCreatePage extends BasePage {
 		// GstNo.click();
 		enterGstAmount.click();
 		enterGstAmount.sendKeys(gst);
+	}
+
+	/***************** Fill Product Form All Field and Save ****************/
+
+	public void fillProductFormAndSave(String productName, String productType, String unit, String modelName,
+			String modelNumber, String generation, String hdd, String memory, String os, String screen,
+			String processor, String purchaseDate, String purchasePrice, String warrantyDate, String vendor,
+			String rentalPrice, String graphics, String condition, String barcode, String imei, String description)
+			throws InterruptedException {
+
+		clickProductNameField();
+		selectProduct(productName);
+
+		clickProductTypeField();
+		selectProductType(productType);
+
+		clickProductUnitField();
+		selectProductUnit(unit);
+
+		setProductSerialNumber("LP-");
+
+		clickModelNameField();
+		selectModelName(modelName);
+
+		clickModelNumField();
+		selectModelNum(modelNumber);
+
+		clickGenerationField();
+		selectGeneration(generation);
+
+		clickHddCpacityField();
+		selectHDDCapacity(hdd);
+
+		clickMemoryField();
+		selectMemory(memory);
+
+		clickOperatingSystemField();
+		selectOperatingSystem(os);
+
+		clickScreenSizeField();
+		selectScreenSize(screen);
+
+		clickProcessorField();
+		selectProcessor(processor);
+
+		selectPurchaseDate(purchaseDate);
+		setPurchasePrice(purchasePrice);
+
+		selectWarrantyUpTo(warrantyDate);
+
+		clickPurchaseRentedFrom();
+		selectVendor(vendor);
+
+		setRentalPrice(rentalPrice);
+
+		clickGraphicsCard();
+		selectGraphicsCard(graphics);
+
+		selectCondition(condition);
+
+		setBarcode(barcode);
+		setIMEINo(imei);
+
+		setDesription(description);
 	}
 
 }

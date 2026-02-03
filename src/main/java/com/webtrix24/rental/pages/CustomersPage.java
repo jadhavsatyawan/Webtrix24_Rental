@@ -1,14 +1,9 @@
 package com.webtrix24.rental.pages;
 
-import java.time.Duration;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.webtrix24.rental.base.BasePage;
 import com.webtrix24.rental.utils.AddressUtil;
@@ -16,7 +11,7 @@ import com.webtrix24.rental.utils.DropdownUtil;
 import com.webtrix24.rental.utils.ToastUtil;
 
 public class CustomersPage extends BasePage {
-	ToastUtil toastUtil; // ✅ Declare
+	ToastUtil toastUtil;
 	DropdownUtil dropdownUtil;
 	AddressUtil addressUtil;
 
@@ -25,7 +20,7 @@ public class CustomersPage extends BasePage {
 	public CustomersPage(WebDriver driver) {
 		super(driver);
 
-		toastUtil = new ToastUtil(driver); // ✅ Initialize once
+		toastUtil = new ToastUtil(driver);
 		dropdownUtil = new DropdownUtil(driver);
 
 	}
@@ -46,7 +41,6 @@ public class CustomersPage extends BasePage {
 
 	@FindBy(xpath = "//input[@id='assignee']")
 	WebElement assignee;
-	By dropdownOptions = By.xpath("//div[contains(@class,'cursor-pointer')]//*[normalize-space(text())!='']");
 
 	@FindBy(xpath = "//input[@id='lead_source']")
 	WebElement leadSource;
@@ -111,9 +105,7 @@ public class CustomersPage extends BasePage {
 	@FindBy(xpath = "//div[@class='Toastify__toast-container Toastify__toast-container--top-right']/div[@role='alert' and contains(text(),'Saved successfully')]")
 	WebElement succesMessage;
 
-	/***************************
-	 * Actions methods
-	 ************************************************/
+	/********************* Actions method *******************/
 
 	public boolean isCreateCustomerFormDisplayed() {
 		try {
@@ -123,48 +115,167 @@ public class CustomersPage extends BasePage {
 		}
 	}
 
-	private void selectDropdownOption(WebElement dropdownInput, String value) {
+	// Method to get toast message text
+	public String getSuccessToastMessage() {
+		try {
+			return succesMessage.getText().trim();
+		} catch (Exception e) {
+			return "";
+		}
 
-		// 1️⃣ Open dropdown
-		wait.until(ExpectedConditions.elementToBeClickable(dropdownInput));
-		dropdownInput.click();
-
-		// 2️⃣ Type text (to filter list)
-		dropdownInput.clear();
-		dropdownInput.sendKeys(value);
-
-		// 3️⃣ WAIT for exact option
-		WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
-				By.xpath("//div[@role='option']//span[contains(normalize-space(),'" + value + "')]")));
-
-		// 4️⃣ 🔥 ACTUAL SELECTION (MOST IMPORTANT)
-		option.click();
-
-		// 5️⃣ Click outside to close dropdown (manual behaviour)
-		customerName.click();
-
-		// 6️⃣ Ensure value is really set
-		wait.until(ExpectedConditions.attributeToBeNotEmpty(dropdownInput, "value"));
 	}
+
+	// Method: enter customer name for Sepcefic name
+	public void enterCustomerName(String name) {
+		customerName.clear();
+		customerName.sendKeys(name);
+	}
+
+	public String getCustomerNameValidationMessage() {
+		try {
+			return customerNameErrorMessage.getText();
+		} catch (Exception e) {
+			return "";
+		}
+	}
+
+	public String getCustomerNameErrorMessage() {
+		try {
+			return customerNamevalidationMsg.getText();
+		} catch (Exception e) {
+			return "";
+		}
+	}
+
+	public String getAssigneeValue() {
+
+		wait.until(ExpectedConditions.attributeToBeNotEmpty(assignee, "value"));
+		return assignee.getAttribute("value").trim();
+
+	}
+
+	public void clickLeadSourceField() {
+		wait.until(ExpectedConditions.elementToBeClickable(leadSource));
+		leadSource.click();
+	}
+
+	public void selectSource(String sou) {
+		dropdownUtil.selectFromSearchableDropdown(leadSource, sou);
+	}
+
+	public String getSelectedLeadSource() {
+		return leadSource.getAttribute("value");
+	}
+
+	public void enterEmail(String email) {
+		CustomerEmail.clear();
+		CustomerEmail.sendKeys(email);
+	}
+
+	public String getEmailValidationMessage() {
+		return wait.until(ExpectedConditions.visibilityOf(emailValidationMessage)).getText();
+	}
+
+	public void enterMobileNumber(String mobile) {
+		mobileNumber.clear();
+		mobileNumber.sendKeys(mobile);
+	}
+
+	public void enterWhatsappNumber(String whatsApp) {
+		whatsAppNumber.clear();
+		whatsAppNumber.sendKeys(whatsApp);
+	}
+
+	public String getMobileValidationMessage() {
+		return wait.until(ExpectedConditions.visibilityOf(mobileValidationMessage)).getText();
+	}
+
+	public void enterBillingName(String billName) {
+		billingName.clear();
+		billingName.sendKeys(billName);
+	}
+
+	public String getBillingName() {
+		return billingName.getAttribute("value");
+	}
+
+	public void enterBillingAddress(String billingAdd) {
+		billingAddress.clear();
+		billingAddress.sendKeys(billingAdd);
+	}
+
+	public String getBillingAddress() {
+		return billingAddress.getAttribute("value");
+	}
+
+	public void enterZipcode(String zipcode) {
+		zipCode.clear();
+		zipCode.sendKeys(zipcode);
+
+	}
+
+	public String getZipcodeValidationMessage() {
+		return wait.until(ExpectedConditions.visibilityOf(zipCodeValidaionMsg)).getText();
+	}
+
+	public void enterAadhaarNumber(String aadhaar) {
+		adharNumber.clear();
+		adharNumber.sendKeys(aadhaar);
+	}
+
+	public String getAadhaarValidationMessage() {
+		return wait.until(ExpectedConditions.visibilityOf(aadharNumValidaionMsg)).getText();
+	}
+
+	public void enterPanNumber(String pan) {
+		panNo.clear();
+		panNo.sendKeys(pan);
+	}
+
+	public String getPanValidationMessage() {
+		return wait.until(ExpectedConditions.visibilityOf(panValidationMsg)).getText();
+	}
+
+	public String getPanInputValue() {
+		return panNo.getAttribute("value");
+	}
+
+	public void enterGstNumber(String gst) {
+		gstNo.clear();
+		gstNo.sendKeys(gst);
+	}
+
+	public String getGstValidationMessage() {
+		return wait.until(ExpectedConditions.visibilityOf(gstNoValidationMsg)).getText();
+	}
+
+	public void enterWebsiteUrl(String url) {
+		website.clear();
+		website.sendKeys(url);
+	}
+
+	public String getWebsiteValidationMessage() {
+		return wait.until(ExpectedConditions.visibilityOf(websiteValidationMsg)).getText();
+	}
+
+	public void selectGstState(String stateName) {
+		dropdownUtil.selectFromSearchableDropdown(gststateDropdown, stateName);
+	}
+
+	/*********** Fill Customer Form With All Fields **********/
 
 	public void fillCustomerForm(String name, String source, String email, String phone, String wm, String billNm,
 			String addr, String zip, String adharnum, String panNum, String web, String gstnum, String gstStateSelect)
 			throws InterruptedException {
-
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
 		// Customer Name
 		wait.until(ExpectedConditions.visibilityOf(customerName)).clear();
 		customerName.sendKeys(name);
 
 		// Lead Source
-		// wait.until(ExpectedConditions.elementToBeClickable(leadSource)).click();
 
-		// leadSource.sendKeys(source);
-		// leadSource.sendKeys(Keys.ENTER);
 		leadSource.click();
-		// selectDropdownOption(source);
-		selectDropdownOption(leadSource, source);
+		dropdownUtil.selectFromSearchableDropdown(leadSource, source);
 
 		// Email
 		wait.until(ExpectedConditions.visibilityOf(CustomerEmail)).clear();
@@ -206,228 +317,13 @@ public class CustomersPage extends BasePage {
 		gstNo.clear();
 		gstNo.sendKeys(gstnum);
 
-		// GST State Dropdown
-		// wait.until(ExpectedConditions.elementToBeClickable(gststateDropdown)).click();
 		gststateDropdown.click();
-
-		// gststateDropdown.sendKeys(gstStateSelect+Keys.ENTER);
-		// selectDropdownOption(gstStateSelect);
-		selectDropdownOption(gststateDropdown, gstStateSelect);
+		dropdownUtil.selectFromSearchableDropdown(gststateDropdown, gstStateSelect);
 
 	}
 
-	public String getCustomerNameValidationMessage() {
-		try {
-			return customerNameErrorMessage.getText();
-		} catch (Exception e) {
-			return "";
-		}
-	}
+	/******** Clicking Save & New Button Check All Fields are Empty *********/
 
-	public String getCustomerNameErrorMessage() {
-		try {
-			return customerNamevalidationMsg.getText();
-		} catch (Exception e) {
-			return "";
-		}
-	}
-
-	// Method to get toast message text
-	public String getSuccessToastMessage() {
-		try {
-			return succesMessage.getText().trim();
-		} catch (Exception e) {
-			return "";
-		}
-
-	}
-
-	// Method: enter customer name for Sepcefic name
-	public void enterCustomerName(String name) {
-		customerName.clear();
-		customerName.sendKeys(name);
-	}
-
-	// Method: Click on Product Name field to open dropdown
-	public void clickLeadSourceField() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.elementToBeClickable(leadSource));
-		leadSource.click();
-	}
-
-	public String getAssigneeValue() {
-
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.attributeToBeNotEmpty(assignee, "value"));
-		return assignee.getAttribute("value").trim();
-
-	}
-
-	/*
-	 * public void selectleadSource(String lead_Source) throws InterruptedException
-	 * { dropdownUtil.selectFromSearchableDropdown(this.leadSource, lead_Source +
-	 * Keys.ENTER); }
-	 */
-	/*
-	 * public void selectleadSource(String value) {
-	 * 
-	 * // 1. Click input
-	 * wait.until(ExpectedConditions.elementToBeClickable(leadSource)).click();
-	 * 
-	 * // 2. Type value leadSource.clear(); leadSource.sendKeys(value);
-	 * 
-	 * // 3. Wait for dropdown option WebElement option =
-	 * wait.until(ExpectedConditions .elementToBeClickable(By.xpath(
-	 * "//div[@role='option']//span[normalize-space()='" + value + "']")));
-	 * 
-	 * // 4. Click option option.click();
-	 * 
-	 * // 🔥 5. FORCE BLUR (MOST IMPORTANT) leadSource.sendKeys(Keys.TAB);
-	 * 
-	 * // 6. Verify value committed
-	 * wait.until(ExpectedConditions.attributeContains(leadSource, "value", value));
-	 * }
-	 */
-	public void selectLeadSource(String value) {
-
-		// 1. Open dropdown
-		wait.until(ExpectedConditions.elementToBeClickable(leadSource)).click();
-
-		// 2. Type value
-		leadSource.clear();
-		leadSource.sendKeys(value);
-
-		// 3. Wait for option SPAN
-		By optionSpanBy = By.xpath("//div[@role='option']//span[normalize-space()='" + value + "']");
-
-		WebElement optionSpan = wait.until(ExpectedConditions.visibilityOfElementLocated(optionSpanBy));
-
-		// 4. REAL mouse click (important)
-		new org.openqa.selenium.interactions.Actions(driver).moveToElement(optionSpan)
-				.pause(java.time.Duration.ofMillis(150)).click().build().perform();
-
-		// 🔥 5. FORCE CLOSE dropdown (MOST IMPORTANT)
-		leadSource.sendKeys(Keys.ESCAPE);
-
-		// 6. Wait till dropdown disappears
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@role='listbox']")));
-
-		// 7. Verify value present in input ONLY
-		wait.until(ExpectedConditions.attributeContains(leadSource, "value", value));
-	}
-
-	public String getSelectedLeadSource() {
-		return leadSource.getAttribute("value");
-	}
-
-	/*
-	 * public void openLatestCustomerFromList() { firstCustomerInList.click(); }
-	 */
-
-	public void enterEmail(String email) {
-		CustomerEmail.clear();
-		CustomerEmail.sendKeys(email);
-	}
-
-	public String getEmailValidationMessage() {
-		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-		return wait.until(ExpectedConditions.visibilityOf(emailValidationMessage)).getText();
-	}
-
-	public void enterMobileNumber(String mobile) {
-		mobileNumber.clear();
-		mobileNumber.sendKeys(mobile);
-	}
-
-	public String getMobileValidationMessage() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-		return wait.until(ExpectedConditions.visibilityOf(mobileValidationMessage)).getText();
-	}
-
-	public void enterZipcode(String zipcode) {
-		zipCode.clear();
-		zipCode.sendKeys(zipcode);
-
-	}
-
-	public String getZipcodeValidationMessage() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-		return wait.until(ExpectedConditions.visibilityOf(zipCodeValidaionMsg)).getText();
-	}
-
-	public void enterAadhaarNumber(String aadhaar) {
-		adharNumber.clear();
-		adharNumber.sendKeys(aadhaar);
-	}
-
-	public String getAadhaarValidationMessage() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-		return wait.until(ExpectedConditions.visibilityOf(aadharNumValidaionMsg)).getText();
-	}
-
-	public void enterPanNumber(String pan) {
-		panNo.clear();
-		panNo.sendKeys(pan);
-	}
-
-	public String getPanValidationMessage() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-		return wait.until(ExpectedConditions.visibilityOf(panValidationMsg)).getText();
-	}
-
-	public String getPanInputValue() {
-		return panNo.getAttribute("value");
-	}
-
-	public void enterGstNumber(String gst) {
-		gstNo.clear();
-		gstNo.sendKeys(gst);
-	}
-
-	public String getGstValidationMessage() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-		return wait.until(ExpectedConditions.visibilityOf(gstNoValidationMsg)).getText();
-	}
-
-	public void enterWebsiteUrl(String url) {
-		website.clear();
-		website.sendKeys(url);
-	}
-
-	public String getWebsiteValidationMessage() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-		return wait.until(ExpectedConditions.visibilityOf(websiteValidationMsg)).getText();
-	}
-
-	public void selectGSTStateByName(String stateName) throws InterruptedException {
-		// try {
-		gststateDropdown.click(); // Open dropdown
-		Thread.sleep(2000); // Wait for options to load
-
-		// cmf.refreshDropdwonList();
-//           Thread.sleep(2000); 
-//           System.out.println("Asnf " );
-		// 1️⃣ Get state code from AddressUtil
-		// String stateCode = AddressUtil.getGSTCode(stateName); // e.g., "27"
-
-		// 2️⃣ Prepare expected value in dropdown format
-		String expectedValue = stateName.trim(); // "27-Maharashtra"
-		System.out.println("🔎 Selecting GST State: " + expectedValue);
-		gststateDropdown.sendKeys(expectedValue);
-		SelectState.click();
-
-		System.out.println("GST State selected successfully: " + expectedValue);
-		// }
-// 	     catch (Exception e) {
-// 	        System.out.println("❌ Failed to select GST state: " + e.getMessage());
-// 	        e.printStackTrace();
-// 	        throw new RuntimeException("Failed to select GST state: " + stateName);
-// 	    }
-	}
-
-	/****************************************
-	 * Clicking Save & New Button Chek Feilds are Emapty
-	 ********************************************************************/
 	public boolean isCustomerNameEmpty() {
 		return customerName.getAttribute("value").trim().isEmpty();
 	}
