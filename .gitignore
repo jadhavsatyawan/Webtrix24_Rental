@@ -1,1 +1,23 @@
 /target/
+# ===== OS =====
+.DS_Store
+Thumbs.db
+
+# ===== Maven =====
+target/
+
+# ===== Automation Reports =====
+reports/
+test-output/
+Screenshots/
+logs/
+*.html
+*.log
+
+# ===== IDE =====
+.project
+.classpath
+.settings/
+.idea/
+*.iml
+
