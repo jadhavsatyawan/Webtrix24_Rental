@@ -258,8 +258,22 @@ public class CustomersPage extends BasePage {
 		return wait.until(ExpectedConditions.visibilityOf(websiteValidationMsg)).getText();
 	}
 
+	/*
+	 * public void selectGstState(String stateName) {
+	 * dropdownUtil.selectFromSearchableDropdown(gststateDropdown, stateName); }
+	 */
 	public void selectGstState(String stateName) {
-		dropdownUtil.selectFromSearchableDropdown(gststateDropdown, stateName);
+
+		gststateDropdown.click();
+
+		// only single typing (NO util retry)
+		gststateDropdown.sendKeys(stateName);
+
+		// wait suggestion
+		wait.until(ExpectedConditions.visibilityOf(SelectState));
+
+		// click first option
+		SelectState.click();
 	}
 
 	/*********** Fill Customer Form With All Fields **********/
@@ -319,6 +333,25 @@ public class CustomersPage extends BasePage {
 
 		gststateDropdown.click();
 		dropdownUtil.selectFromSearchableDropdown(gststateDropdown, gstStateSelect);
+
+	}
+
+	public void fillCustomerFormSafely(String name, String source, String email, String phone, String wm, String billNm,
+			String addr, String zip, String adharnum, String panNum, String web, String gstnum, String gstStateSelect) {
+
+		enterCustomerName(name);
+		selectSource(source);
+		enterEmail(email);
+		enterMobileNumber(phone);
+		enterWhatsappNumber(wm);
+		enterBillingName(billNm);
+		enterBillingAddress(addr);
+		enterZipcode(zip);
+		enterAadhaarNumber(adharnum);
+		enterPanNumber(panNum);
+		enterWebsiteUrl(web);
+		enterGstNumber(gstnum);
+		selectGstState(gstStateSelect);
 
 	}
 

@@ -56,12 +56,33 @@
             <version>2.22.1</version>
         </dependency>
         
-        <!-- Apache Commons IO -->
-		<dependency>
-    		<groupId>commons-io</groupId>
-    		<artifactId>commons-io</artifactId>
-    		<version>2.15.1</version>
-		</dependency>
+       <!-- Apache POI (Stable combo) -->
+<dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi</artifactId>
+    <version>5.2.5</version>
+</dependency>
+
+<dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi-ooxml</artifactId>
+    <version>5.2.5</version>
+</dependency>
+
+<!-- Required for POI -->
+<dependency>
+    <groupId>org.apache.xmlbeans</groupId>
+    <artifactId>xmlbeans</artifactId>
+    <version>5.1.1</version>
+</dependency>
+
+<!-- Commons IO (compatible) -->
+<dependency>
+    <groupId>commons-io</groupId>
+    <artifactId>commons-io</artifactId>
+    <version>2.13.0</version>
+</dependency>
+
 		
 		<!--Java Faker-->
 		<dependency>
@@ -69,20 +90,7 @@
     		<artifactId>javafaker</artifactId>
     		<version>1.0.2</version>
 		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
-	<dependency>
-	    <groupId>org.apache.poi</groupId>
-	    <artifactId>poi</artifactId>
-	    <version>5.4.1</version>
-	</dependency>
 	
-	<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
-	<dependency>
-	    <groupId>org.apache.poi</groupId>
-	    <artifactId>poi-ooxml</artifactId>
-	    <version>5.4.1</version>
-	</dependency>
 
     </dependencies>
 </project>

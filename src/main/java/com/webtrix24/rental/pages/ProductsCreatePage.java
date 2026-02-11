@@ -472,4 +472,65 @@ public class ProductsCreatePage extends BasePage {
 		setDesription(description);
 	}
 
+	/************** Fill Product Form Without Barcode and Save ********************/
+
+	public void fillProductFormWthoutBarcodeAndSave(String productName, String productType, String unit,
+			String modelName, String modelNumber, String generation, String hdd, String memory, String os,
+			String screen, String processor, String purchaseDate, String purchasePrice, String warrantyDate,
+			String vendor, String rentalPrice, String graphics, String condition, String imei, String description)
+			throws InterruptedException {
+
+		clickProductNameField();
+		selectProduct(productName);
+
+		clickProductTypeField();
+		selectProductType(productType);
+
+		clickProductUnitField();
+		selectProductUnit(unit);
+
+		setProductSerialNumber("LP-");
+
+		clickModelNameField();
+		selectModelName(modelName);
+
+		clickModelNumField();
+		selectModelNum(modelNumber);
+
+		clickGenerationField();
+		selectGeneration(generation);
+
+		clickHddCpacityField();
+		selectHDDCapacity(hdd);
+
+		clickMemoryField();
+		selectMemory(memory);
+
+		clickOperatingSystemField();
+		selectOperatingSystem(os);
+
+		clickScreenSizeField();
+		selectScreenSize(screen);
+
+		clickProcessorField();
+		selectProcessor(processor);
+
+		selectPurchaseDate(purchaseDate);
+		setPurchasePrice(purchasePrice);
+
+		selectWarrantyUpTo(warrantyDate);
+
+		clickPurchaseRentedFrom();
+		selectVendor(vendor);
+
+		setRentalPrice(rentalPrice);
+
+		clickGraphicsCard();
+		selectGraphicsCard(graphics);
+
+		selectCondition(condition);
+		setIMEINo(imei);
+
+		setDesription(description);
+	}
 }
