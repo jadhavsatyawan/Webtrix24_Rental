@@ -172,7 +172,8 @@ public class DropdownUtil {
 		for (WebElement option : options) {
 			String text = option.getText().trim();
 
-			if (text.equalsIgnoreCase(valueToSelect)) {
+			// if (text.equalsIgnoreCase(valueToSelect))
+			if (text.toLowerCase().contains(valueToSelect.toLowerCase())) {
 				js.executeScript("arguments[0].scrollIntoView({block:'center'});", option);
 				actions.moveToElement(option).pause(Duration.ofMillis(150)).click().perform();
 

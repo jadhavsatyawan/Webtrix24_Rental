@@ -260,22 +260,31 @@ public class CustomersPage extends BasePage {
 
 	/*
 	 * public void selectGstState(String stateName) {
-	 * dropdownUtil.selectFromSearchableDropdown(gststateDropdown, stateName); }
+	 * dropdownUtil.selectFromSearchableDropdown(gststateDropdown, stateName);
+	 * gststateDropdown.sendKeys(Keys.ENTER); }
 	 */
-	public void selectGstState(String stateName) {
 
+	public void clickGstState() {
+		wait.until(ExpectedConditions.elementToBeClickable(gststateDropdown));
 		gststateDropdown.click();
-
-		// only single typing (NO util retry)
-		gststateDropdown.sendKeys(stateName);
-
-		// wait suggestion
-		wait.until(ExpectedConditions.visibilityOf(SelectState));
-
-		// click first option
-		SelectState.click();
 	}
 
+	// Method: select product name in dropdown
+	public void selectGstState(String gstate) throws InterruptedException {
+		dropdownUtil.selectFromSearchableDropdown(this.gststateDropdown, gstate);// productNameInput
+	}
+
+	/*
+	 * public void selectGstState(String stateName) {
+	 * 
+	 * gststateDropdown.click();
+	 * 
+	 * // only single typing (NO util retry) gststateDropdown.sendKeys(stateName);
+	 * 
+	 * // wait suggestion wait.until(ExpectedConditions.visibilityOf(SelectState));
+	 * 
+	 * // click first option SelectState.click(); }
+	 */
 	/*********** Fill Customer Form With All Fields **********/
 
 	public void fillCustomerForm(String name, String source, String email, String phone, String wm, String billNm,
@@ -337,7 +346,8 @@ public class CustomersPage extends BasePage {
 	}
 
 	public void fillCustomerFormSafely(String name, String source, String email, String phone, String wm, String billNm,
-			String addr, String zip, String adharnum, String panNum, String web, String gstnum, String gstStateSelect) {
+			String addr, String zip, String adharnum, String panNum, String web, String gstnum, String gstStateSelect)
+			throws InterruptedException {
 
 		enterCustomerName(name);
 		selectSource(source);
