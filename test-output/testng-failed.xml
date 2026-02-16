@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.webtrix24.rental.tests.customer.CustomerBulkUploadTest">
+      <class name="com.webtrix24.rental.tests.customer.FireWithinLoginTest">
         <methods>
-          <include name="bulkUploadCustomers"/>
           <include name="setUp"/>
+          <include name="verifyAllUsersLogin"/>
           <include name="setUpCustomerCreate"/>
         </methods>
-      </class> <!-- com.webtrix24.rental.tests.customer.CustomerBulkUploadTest -->
+      </class> <!-- com.webtrix24.rental.tests.customer.FireWithinLoginTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
