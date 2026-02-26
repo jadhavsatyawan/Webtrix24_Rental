@@ -533,4 +533,177 @@ public class ProductsCreatePage extends BasePage {
 
 		setDesription(description);
 	}
+
+	/*
+	 * public void fillProductFormAndSave(String productName, String productType,
+	 * String unit, String modelName, String modelNumber, String generation, String
+	 * hdd, String memory, String os, String screen, String processor, String
+	 * purchaseDate, String purchasePrice, String warrantyDate, String rentalPrice,
+	 * String graphics, String condition, String imei) throws InterruptedException {
+	 * 
+	 * clickProductNameField(); selectProduct(productName);
+	 * 
+	 * clickProductTypeField(); selectProductType(productType);
+	 * 
+	 * clickProductUnitField(); selectProductUnit(unit);
+	 * 
+	 * setProductSerialNumber("LP-");
+	 * 
+	 * clickModelNameField(); selectModelName(modelName);
+	 * 
+	 * clickModelNumField(); selectModelNum(modelNumber);
+	 * 
+	 * clickGenerationField(); selectGeneration(generation);
+	 * 
+	 * clickHddCpacityField(); selectHDDCapacity(hdd);
+	 * 
+	 * clickMemoryField(); selectMemory(memory);
+	 * 
+	 * clickOperatingSystemField(); selectOperatingSystem(os);
+	 * 
+	 * clickScreenSizeField(); selectScreenSize(screen);
+	 * 
+	 * clickProcessorField(); selectProcessor(processor);
+	 * 
+	 * selectPurchaseDate(purchaseDate); setPurchasePrice(purchasePrice);
+	 * 
+	 * selectWarrantyUpTo(warrantyDate);
+	 * 
+	 * setRentalPrice(rentalPrice);
+	 * 
+	 * clickGraphicsCard(); selectGraphicsCard(graphics);
+	 * 
+	 * selectCondition(condition); setIMEINo(imei);
+	 * 
+	 * }
+	 */
+	private void selectDropdownByExactText(WebElement dropdownElement, String value) {
+
+		if (value == null || value.trim().isEmpty()) {
+			return;
+		}
+
+		Select select = new Select(dropdownElement);
+		boolean found = false;
+
+		for (WebElement option : select.getOptions()) {
+			if (option.getText().trim().equalsIgnoreCase(value.trim())) {
+				option.click();
+				found = true;
+				break;
+			}
+		}
+
+		if (!found) {
+			System.out.println("Value not found in dropdown: " + value);
+		}
+	}
+
+	public void fillProductFormAndSave(String productName, String productType, String unit, String serialnum,
+			String modelName, String modelNumber, String generation, String hdd, String memory, String os,
+			String screen, String processor, String purchaseDate, String purchasePrice, String warrantyDate,
+			String rentalPrice, String graphics, String condition, String imei) throws InterruptedException {
+
+		// ===== Mandatory Fields =====
+		if (productName != null && !productName.trim().isEmpty()) {
+			clickProductNameField();
+			dropdownUtil.selectFromSearchableDropdownExact(this.productName, productName);
+		}
+
+		if (productType != null && !productType.trim().isEmpty()) {
+			clickProductTypeField();
+			dropdownUtil.selectFromSearchableDropdownExact(this.productType, productType);
+		}
+
+		if (unit != null && !unit.trim().isEmpty()) {
+			clickProductUnitField();
+			dropdownUtil.selectFromSearchableDropdownExact(this.unit, unit);
+
+		}
+
+		// Serial always generate (mandatory handled before calling this method)
+		SetProductSerialNumberManual(serialnum);
+
+		// ===== Optional Fields (Safe Handling) =====
+
+		if (modelName != null && !modelName.trim().isEmpty()) {
+			clickModelNameField();
+			dropdownUtil.selectFromSearchableDropdownExact(this.modelName, modelName);
+		}
+
+		if (modelNumber != null && !modelNumber.trim().isEmpty()) {
+			clickModelNumField();
+			dropdownUtil.selectFromSearchableDropdownExact(this.modelNumber, modelNumber);
+		}
+
+		if (generation != null && !generation.trim().isEmpty()) {
+			clickGenerationField();
+			dropdownUtil.selectFromSearchableDropdownExact(this.generation, generation);
+		}
+
+		if (hdd != null && !hdd.trim().isEmpty()) {
+			clickHddCpacityField();
+			dropdownUtil.selectFromSearchableDropdownExact(this.hddCapacity, hdd);
+		}
+
+		if (memory != null && !memory.trim().isEmpty()) {
+			clickMemoryField();
+			dropdownUtil.selectFromSearchableDropdownExact(this.memory, memory);
+		}
+
+		if (os != null && !os.trim().isEmpty()) {
+			clickOperatingSystemField();
+			dropdownUtil.selectFromSearchableDropdownExact(this.operatingSystem, os);
+		}
+
+		if (screen != null && !screen.trim().isEmpty()) {
+			clickScreenSizeField();
+			dropdownUtil.selectFromSearchableDropdownExact(this.screensize, screen);
+		}
+
+		/*
+		 * if (processor != null && !processor.trim().isEmpty()) {
+		 * clickProcessorField(); selectProcessor(processor); }
+		 */
+
+		if (processor != null && !processor.trim().isEmpty()) {
+			clickProcessorField();
+			dropdownUtil.selectFromSearchableDropdownExact(this.processor, processor);
+		}
+
+		if (purchaseDate != null && !purchaseDate.trim().isEmpty()) {
+			PurchaseDate.click();
+			calendarUtil.selectDateByInput(purchaseDate);
+		}
+
+		if (purchasePrice != null && !purchasePrice.trim().isEmpty()) {
+			setPurchasePrice(purchasePrice);
+		}
+
+		if (warrantyDate != null && !warrantyDate.trim().isEmpty()) {
+			WarrantyUpTo.click();
+			calendarUtil.selectDateByInput(warrantyDate);
+
+		}
+
+		if (rentalPrice != null && !rentalPrice.trim().isEmpty()) {
+			setRentalPrice(rentalPrice);
+
+		}
+
+		if (graphics != null && !graphics.trim().isEmpty()) {
+			clickGraphicsCard();
+			dropdownUtil.selectFromSearchableDropdownExact(this.graphicsCard, graphics);
+		}
+
+		// Condition - Skip if blank or "New" (default selected)
+		if (condition != null && !condition.trim().isEmpty() && !condition.trim().equalsIgnoreCase("New")) {
+			dropdownUtil.selectFromSearchableDropdownExact(this.conditiondropdown, condition);
+		}
+
+		if (imei != null && !imei.trim().isEmpty()) {
+
+			setIMEINo(imei);
+		}
+	}
 }
