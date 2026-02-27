@@ -6,7 +6,7 @@
       <!-- ONLY Create Customer (priority 17 method) -->
              <class name="com.webtrix24.rental.tests.customer.CustomerCreatePositiveTest">
                 <methods>
-                    <include name="createCustomerValidGstState"/>
+                    <include name="verifyValidCustomerFormInput"/>
                 </methods>
             </class>
 

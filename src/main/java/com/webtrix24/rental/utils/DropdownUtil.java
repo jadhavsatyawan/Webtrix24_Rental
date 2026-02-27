@@ -172,7 +172,8 @@ public class DropdownUtil {
 		for (WebElement option : options) {
 			String text = option.getText().trim();
 
-			if (text.equalsIgnoreCase(valueToSelect)) {
+			// if (text.equalsIgnoreCase(valueToSelect))
+			if (text.toLowerCase().contains(valueToSelect.toLowerCase())) {
 				js.executeScript("arguments[0].scrollIntoView({block:'center'});", option);
 				actions.moveToElement(option).pause(Duration.ofMillis(150)).click().perform();
 
@@ -182,6 +183,43 @@ public class DropdownUtil {
 		}
 
 		throw new RuntimeException("Dropdown value not found: " + valueToSelect);
+	}
+
+	// Bulk Upload
+	public void selectFromSearchableDropdownExact(WebElement input, String valueToSelect) {
+
+		WebElement inputBox = wait.until(ExpectedConditions.elementToBeClickable(input));
+		inputBox.click();
+
+		try {
+			WebElement clearBtn = inputBox.findElement(By.xpath("./following-sibling::button"));
+			clearBtn.click();
+			wait.until(ExpectedConditions.attributeToBe(inputBox, "value", ""));
+		} catch (Exception e) {
+			// ignore
+		}
+
+		inputBox.sendKeys(valueToSelect);
+
+		By optionsLocator = By.xpath("//div[@role='option']");
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(optionsLocator));
+
+		List<WebElement> options = driver.findElements(optionsLocator);
+
+		for (WebElement option : options) {
+			String text = option.getText().trim();
+
+			// ✅ STRICT MATCH
+			if (text.equalsIgnoreCase(valueToSelect.trim())) {
+				js.executeScript("arguments[0].scrollIntoView({block:'center'});", option);
+				actions.moveToElement(option).pause(Duration.ofMillis(150)).click().perform();
+
+				System.out.println("Dropdown EXACT value selected: " + text);
+				return;
+			}
+		}
+
+		throw new RuntimeException("Exact dropdown value not found: " + valueToSelect);
 	}
 
 }

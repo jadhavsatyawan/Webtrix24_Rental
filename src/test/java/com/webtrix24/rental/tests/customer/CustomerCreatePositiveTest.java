@@ -299,7 +299,7 @@ public class CustomerCreatePositiveTest extends BaseClass {
 	}
 
 	@Test(priority = 16, description = "Create customer with valid GST State")
-	public void createCustomerValidGstState() {
+	public void createCustomerValidGstState() throws InterruptedException {
 
 		customersPage.enterCustomerName(TestDataGenerator.getCustomerName());
 
@@ -315,8 +315,8 @@ public class CustomerCreatePositiveTest extends BaseClass {
 	public void verifyValidCustomerFormInput() throws InterruptedException {
 
 		// Step 2: All fields
-		customersPage.fillCustomerForm("Suraj Patil", "FB", "patil276@gmail.com", "9987587485", "7758964875", "Suraj",
-				"Pune", "411052", "967858963278", "ERTYU7485H", "https://www.sunsine.com", "27YUIOP7485T3ZP",
+		customersPage.fillCustomerForm("Suraj Patil", "FB", "surajpatil276@gmail.com", "9987587485", "7758964875",
+				"Suraj", "Pune", "411052", "967858963278", "ERTYU7485H", "https://www.sunsine.com", "27YUIOP7485T3ZP",
 				"Maharashtra"
 
 		);

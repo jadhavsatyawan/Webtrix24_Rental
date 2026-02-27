@@ -3,24 +3,25 @@ package com.webtrix24.rental.base;
 import java.time.Duration;
 
 import org.openqa.selenium.WebDriver;
-
 import org.openqa.selenium.support.PageFactory;
-
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class BasePage 
-{
+public class BasePage {
 
-    protected WebDriver driver;
-    protected WebDriverWait wait;
+	protected WebDriver driver;
+	protected WebDriverWait wait;
 
-    public BasePage(WebDriver driver) 
-    {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        PageFactory.initElements(driver, this);
-    }
-   
+	public BasePage(WebDriver driver) {
+		this.driver = driver;
+		this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		PageFactory.initElements(driver, this);
+	}
 
+	public void pause(int ms) {
+		try {
+			Thread.sleep(ms);
+		} catch (InterruptedException e) {
+		}
+	}
 
 }
