@@ -130,55 +130,115 @@ public class CommanFunctionalitiesPage extends BasePage {
 
 	}
 
-	public boolean clickExportPDF() {
+	/************** Export PDF **********************/
 
-		// Step 0: Wait till Export PDF button clickable
+	// Only Specific Module Export PDF Open In New tab and Switch Back To Parent Tab
+
+	/*
+	 * public boolean clickExportPDF() {
+	 * 
+	 * // Step 0: Wait till Export PDF button clickable
+	 * wait.until(ExpectedConditions.elementToBeClickable(exportPDF));
+	 * 
+	 * String parentWindow = driver.getWindowHandle(); int parentTabCount =
+	 * driver.getWindowHandles().size();
+	 * 
+	 * // Step 1: Click Export PDF exportPDF.click();
+	 * 
+	 * // Step 2: Wait for new tab wait.until(d -> d.getWindowHandles().size() >
+	 * parentTabCount);
+	 * 
+	 * // Step 3: Switch to PDF tab String pdfWindow = null; for (String win :
+	 * driver.getWindowHandles()) { if (!win.equals(parentWindow)) { pdfWindow =
+	 * win; break; } }
+	 * 
+	 * driver.switchTo().window(pdfWindow);
+	 * 
+	 * // Step 4: Verify PDF opened (URL based – reliable) WebDriverWait pdfWait =
+	 * new WebDriverWait(driver, Duration.ofSeconds(10));
+	 * pdfWait.until(ExpectedConditions.urlContains("/customer/download"));
+	 * 
+	 * boolean isPdfOpened = driver.getCurrentUrl().contains("/customer/download");
+	 * 
+	 * // Optional visual hold try { Thread.sleep(9000); } catch
+	 * (InterruptedException e) { }
+	 * 
+	 * // Step 5: Close PDF tab driver.close();
+	 * 
+	 * // Step 6: Switch back to parent window
+	 * driver.switchTo().window(parentWindow);
+	 * 
+	 * // Step 7: Confirm we are back on Customers page
+	 * wait.until(ExpectedConditions.urlContains("/customer"));
+	 * 
+	 * return isPdfOpened; }
+	 */
+
+	// Reusable Method For All Modules Export PDF Open In New tab and Switch Back To
+	// Parent Tab
+	public boolean clickExportPDF(String expectedUrlPart) {
+
 		wait.until(ExpectedConditions.elementToBeClickable(exportPDF));
 
 		String parentWindow = driver.getWindowHandle();
-		int parentTabCount = driver.getWindowHandles().size();
+		int tabsBefore = driver.getWindowHandles().size();
 
-		// Step 1: Click Export PDF
 		exportPDF.click();
 
-		// Step 2: Wait for new tab
-		wait.until(d -> d.getWindowHandles().size() > parentTabCount);
+		wait.until(d -> d.getWindowHandles().size() > tabsBefore);
 
-		// Step 3: Switch to PDF tab
-		String pdfWindow = null;
 		for (String win : driver.getWindowHandles()) {
 			if (!win.equals(parentWindow)) {
-				pdfWindow = win;
+				driver.switchTo().window(win);
 				break;
 			}
 		}
 
-		driver.switchTo().window(pdfWindow);
-
-		// Step 4: Verify PDF opened (URL based – reliable)
 		WebDriverWait pdfWait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		pdfWait.until(ExpectedConditions.urlContains("/customer/download"));
+		pdfWait.until(ExpectedConditions.urlContains(expectedUrlPart));
 
-		boolean isPdfOpened = driver.getCurrentUrl().contains("/customer/download");
+		boolean isOpened = driver.getCurrentUrl().contains(expectedUrlPart);
 
-		// Optional visual hold
+		// 🔥 HOLD PDF TAB FOR VISUAL CONFIRMATION
 		try {
-			Thread.sleep(9000);
+			Thread.sleep(8000); // ⏳ 5 seconds – adjust as needed
 		} catch (InterruptedException e) {
 		}
 
-		// Step 5: Close PDF tab
 		driver.close();
-
-		// Step 6: Switch back to parent window
 		driver.switchTo().window(parentWindow);
 
-		// Step 7: Confirm we are back on Customers page
-		wait.until(ExpectedConditions.urlContains("/customer"));
-
-		return isPdfOpened;
+		return isOpened;
 	}
 
+	// Reusable Method for all modules PDF Open In New tab and Stay There
+
+	public boolean clickExportPDFAndStay(String expectedUrlPart) {
+
+		wait.until(ExpectedConditions.elementToBeClickable(exportPDF));
+
+		String parentWindow = driver.getWindowHandle();
+		int tabsBefore = driver.getWindowHandles().size();
+
+		exportPDF.click();
+
+		// ✅ WAIT FOR NEW TAB (No lambda)
+		wait.until(ExpectedConditions.numberOfWindowsToBe(tabsBefore + 1));
+
+		for (String win : driver.getWindowHandles()) {
+			if (!win.equals(parentWindow)) {
+				driver.switchTo().window(win);
+				break;
+			}
+		}
+
+		WebDriverWait pdfWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		pdfWait.until(ExpectedConditions.urlContains(expectedUrlPart));
+
+		return driver.getCurrentUrl().contains(expectedUrlPart);
+	}
+
+	/************** Export Excel *******************/
 	public void clickExportExcel() {
 		wait.until(ExpectedConditions.elementToBeClickable(exportExcel));
 		exportExcel.click();

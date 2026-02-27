@@ -37,15 +37,16 @@ public class CustomerExportTest extends BaseClass {
 		Thread.sleep(2000);
 	}
 
-	@Test(description = "Verify Export PDF opens customer data in new tab", enabled = false)
-	public void shouldExportCustomerListAsPDF() {
-
-		boolean isPdfOpened = cmf.clickExportPDF();
-
-		Assert.assertTrue(isPdfOpened, "PDF content not loaded in new tab");
-
-	}
-
+	/*
+	 * @Test(description = "Verify Export PDF opens customer data in new tab",
+	 * enabled = false) public void shouldExportCustomerListAsPDF() {
+	 * 
+	 * boolean isPdfOpened = cmf.clickExportPDF();
+	 * 
+	 * Assert.assertTrue(isPdfOpened, "PDF content not loaded in new tab");
+	 * 
+	 * }
+	 */
 	@Test(description = "Verify customer data can be exported as Excel")
 	public void shouldExportCustomerListAsExcel() throws InterruptedException {
 		cmf.clickExportExcel();

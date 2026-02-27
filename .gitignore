@@ -1,1 +1,12 @@
-/target/
+.classpath
+.project
+.settings/
+target/
+reports/
+screenshots/
+test-output/
+logs/
+*.html
+*.log
+.idea/
+*.iml
